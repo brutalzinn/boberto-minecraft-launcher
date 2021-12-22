@@ -4,7 +4,7 @@ const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? pro
 document.querySelector(`.online`).style.display = "none"
 document.querySelector(`.microsoft-btn`).style.display = "none"
 document.querySelector(`.loginSpanDim`).style.display = "none"
-document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "O servidor do Minecraft aceita rachaduras, <br> para conectar você só precisa inserir seu apelido"
+document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "Insira seu nome de jogador para jogar no mundo bobertástico. </br> Esse launcher se destina a uso exclusivo dos meus amigos. </br>E não deve ser compartilhado com terceiros."
 document.querySelector(`.uzurionAppLoginCardLabel`).innerHTML = "nome do usuário"
 document.querySelector(".uzurionAppGenHeader").style.display = "block"
 
