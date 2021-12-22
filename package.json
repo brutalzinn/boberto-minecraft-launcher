@@ -1,0 +1,78 @@
+{
+  "name": "Boberto-Minecraft-Launcher",
+  "version": "2.0.2",
+  "productName": "Boberto Minecraft Launcher",
+  "description": "Boberto Minecraft Launcher",
+  "main": "app/index.html",
+  "author": "Luuxis",
+  "window": {
+    "title": "Boberto Minecraft update",
+    "width": 400,
+    "height": 500,
+    "frame": false,
+    "resizable": false,
+    "position": "center",
+    "icon": "app/assets/images/icons/icon.png"
+  },
+  "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
+  "url": "http://www.minecraft.robertinho.net",
+  "user": "",
+  "webkit": {"plugin": true},
+  "scripts": {
+    "start": "run --64 --mirror https://dl.nwjs.io/ .",
+    "server": "npm install && node node_modules/emc-core-luuxis/utils/builder.js --v=1.0",
+    "build:win": "npm install && build --win --x64 --mirror https://dl.nwjs.io/ .",
+    "build:mac": "npm install && build --mac --x64 --mirror https://dl.nwjs.io/ .",
+    "build:linux": "npm install && build --linux --x64 --mirror https://dl.nwjs.io/ .",
+    "build:all": "npm run build:linux && npm run build:mac && npm run build:win"
+  },
+  "license": "CC0",
+  "build": {
+    "appId": "Uzurion Launcher",
+    "nwVersion": "0.55.0",
+    "packed": true,
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "strippedProperties": [
+      "build"
+    ],
+    "excludes": [
+      ".gitignore",
+      "tool.bat",
+      "web/**",
+      "AppData/**",
+      "node-v*/**",
+      "test/**",
+      "package-lock.json",
+      "README.md"
+    ],
+    "outputPattern": "${NAME}-${PLATFORM}",
+    "win": {
+      "productName": "Boberto Minecraft Launcher",
+      "companyName": "Boberto Minecraft Launcher",
+      "copyright": "copyright",
+      "icon": "./app/assets/images/icons/icon.ico"
+    },
+    "mac": {
+      "displayName": "Boberto Minecraft-Launcher",
+      "copyright": "copyright",
+      "plistStrings": {
+        "CFBundleIdentifier": "Boberto Minecraft-Launcher"
+      }
+    },
+    "nsis": {
+      "installDirectory": "$LOCALAPPDATA\\Programs\\${_COMPANYNAME}",
+      "diffUpdaters": false
+    }
+  },
+  "devDependencies": {
+    "nwjs-builder-luuxis": "^1.15.0"
+  },
+  "dependencies": {
+    "minecraft-java-core": "^1.1.4",
+    "msmc-luuxis": "^1.0.3",
+    "nw-autoupdater-luuxis": "^1.1.6"
+  }
+}
