@@ -4,20 +4,20 @@ const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? pro
 document.querySelector(`.online`).style.display = "none"
 document.querySelector(`.microsoft-btn`).style.display = "none"
 document.querySelector(`.loginSpanDim`).style.display = "none"
-document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "Le serveur Minecraft accepte les crack,<br>pour vous connecter il vous suffit de rentrer votre pseudo"
-document.querySelector(`.uzurionAppLoginCardLabel`).innerHTML = "nom d\'utilisateur"
+document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "O servidor do Minecraft aceita rachaduras, <br> para conectar você só precisa inserir seu apelido"
+document.querySelector(`.uzurionAppLoginCardLabel`).innerHTML = "nome do usuário"
 document.querySelector(".uzurionAppGenHeader").style.display = "block"
 
 document.querySelector(".login-btn").addEventListener("click", () => {
     if (document.querySelector(".pseudo").value == ""){
-        document.querySelector(".info-login").innerHTML = "Entrez votre nom d'utilisateur"
+        document.querySelector(".info-login").innerHTML = "entre com seu nome de usuário"
         document.querySelector(".info-login").style.color = "red";
         document.querySelector(".info-login").style.display = "block"
         return;
     }
 
     if (document.querySelector(".pseudo").value.length < 3) {
-       document.querySelector(".info-login").innerHTML = "Votre nom d'utilisateur doit avoir au moins 3 caractères"
+       document.querySelector(".info-login").innerHTML = "Seu nome de usuário deve ter pelo menos 3 caracteres"
         document.querySelector(".info-login").style.color = "red";
         document.querySelector(".info-login").style.display = "block"
         return;
@@ -26,7 +26,7 @@ document.querySelector(".login-btn").addEventListener("click", () => {
     document.querySelector(".login-btn").disabled = true
     document.querySelector(".pseudo").disabled = true
     document.querySelector(".info-login").style.color = "#000000";
-    document.querySelector(".info-login").innerHTML = "Connexion en cours..."
+    document.querySelector(".info-login").innerHTML = "Conexão atual ..."
     document.querySelector(".info-login").style.display = "block"
     auth.loginMojang(document.querySelector(".pseudo").value).then(user => {
         config.config().then(res => {

@@ -5,10 +5,10 @@ document.querySelector(".uzurionAppGenHeader").style.display = "block"
 
 document.querySelector(".login-btn").addEventListener("click", () => {
     if (document.querySelector(".pseudo").value == ""){
-        document.querySelector(".uzurion-mail").innerHTML = "Entrez votre adresse email / nom d'utilisateur"
+        document.querySelector(".uzurion-mail").innerHTML = "Digite seu endereço de e-mail / nome de usuário"
         return;
     } else if (document.querySelector(".password").value == ""){
-        document.querySelector(".uzurion-password").innerHTML = "Entrez votre mot de passe"
+        document.querySelector(".uzurion-password").innerHTML = "Coloque sua senha"
         return;
     }
 
@@ -18,7 +18,7 @@ document.querySelector(".login-btn").addEventListener("click", () => {
     document.querySelector(".uzurion-mail").innerHTML = "&nbsp;"
     document.querySelector(".uzurion-password").innerHTML = "&nbsp;"
     document.querySelector(".info-login").style.color = "white";
-    document.querySelector(".info-login").innerHTML = "Connexion en cours..."
+    document.querySelector(".info-login").innerHTML = "Conexão atual..."
     document.querySelector(".info-login").style.display = "block"
     auth.loginMojang(document.querySelector(".pseudo").value, document.querySelector(".password").value).then(user => {
         config.config().then(res => {
@@ -35,7 +35,7 @@ document.querySelector(".login-btn").addEventListener("click", () => {
         document.querySelector(".login-btn").disabled = false
         document.querySelector(".pseudo").disabled = false
         document.querySelector(".password").disabled = false
-        document.querySelector(".info-login").innerHTML = "Adresse E-mail ou mot de passe invalide"
+        document.querySelector(".info-login").innerHTML = "Endereço de email ou senha não conferem."
         document.querySelector(".info-login").style.color = "red";
         document.querySelector(".info-login").style.display = "block"
     })

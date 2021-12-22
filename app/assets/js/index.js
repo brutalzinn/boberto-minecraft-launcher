@@ -45,9 +45,9 @@ async function maintenanceCheck(){
     }
     checkUpdate();
   }).catch( err => {
-    console.log("impossible de charger le config.json");
+    console.log("Impossível carregar config.json");
     console.log(err);
-    return shutdown("Aucune connexion internet détectée,<br>veuillez réessayer ultérieurement.");
+    return shutdown("Nenhuma conexão de internet detectada, <br> tente novamente mais tarde.");
   })
 }
 
@@ -65,17 +65,17 @@ async function checkUpdate(){
   });
 
   toggleProgress();
-  setStatus(`Téléchargement de la mise à jour`);
+  setStatus(`Baixe a atualização`);
   const file = await updater.download(manifest);
-  setStatus(`Décompression de la mise à jour`);
+  setStatus(`Descompacte a atualização`);
   await updater.unpack(file);
   toggleProgress();
-  setStatus(`Redémarrage`);
+  setStatus(`Reiniciar`);
   await updater.restartToSwap();
 }
   
 function startLauncher(){
-  setStatus(`Démarrage du launcher`);
+  setStatus(`Iniciando o lançador`);
   nw.Window.open("app/launcher.html", {
     "title": pkg.productName,
     "width": 1280,
@@ -90,10 +90,10 @@ function startLauncher(){
 }
 
 function shutdown(text){
-  setStatus(`${text}<br>Arrêt dans 5s`);
+  setStatus(`${text}<br>Parar em 5s`);
   let i = 4;
   setInterval(() => {
-    setStatus(`${text}<br>Arrêt dans ${i--}s`);
+    setStatus(`${text}<br>Parar em ${i--}s`);
     if(i < 0) win.close();
   }, 1000);
 }

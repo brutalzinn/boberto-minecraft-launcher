@@ -5,7 +5,7 @@ let newsForm = document.querySelector(".container-news")
 let news_var = config.news().then(config => {
   newsForm.innerHTML = ``
   if(config.news.length === 0){
-    newsForm.innerHTML = `<div class="newsTitle">Aucune news n'est actuellement disponible.</div>`
+    newsForm.innerHTML = `<div class="newsTitle">Nenhuma notícia está disponível no momento.</div>`
   } else {
     for (let i = 0; i < config.news.length; i++) {
       var newsTitle = config.news[i].title
@@ -20,7 +20,7 @@ let news_var = config.news().then(config => {
         <div class="newsBody">
           <div class="texenewsbody">${newsBody}</div>
         </div>
-        <div class="newsAuthor">Par ${newsAuthor}, le ${newsDate}</div>`
+        <div class="newsAuthor">Por ${newsAuthor}, de ${newsDate}</div>`
       } else {
          newsForm.innerHTML += 
          `<div class="newsTitle">${newsTitle}</div>

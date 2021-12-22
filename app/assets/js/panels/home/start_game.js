@@ -52,7 +52,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         
         launcher.on('progress', (DL, totDL) => {
             document.querySelector(".progress-bar").style.display = "block"
-            document.querySelector(".info-download").innerHTML = `Téléchargement ${((DL / totDL) * 100).toFixed(0)}%`
+            document.querySelector(".info-download").innerHTML = `Download ${((DL / totDL) * 100).toFixed(0)}%`
             document.querySelector(".progress-bar").value = DL;
             document.querySelector(".progress-bar").max = totDL;
         });
@@ -62,7 +62,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         })
 
         launcher.on('check', (e) => {
-            document.querySelector(".info-download").innerHTML = `Vérification`
+            document.querySelector(".info-download").innerHTML = `Verificação`
         })
         
         launcher.on('data', (e) => {
@@ -70,7 +70,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
             if(config_launcher.Launcher.CloseLauncher === true){
                 win.hide();
             }
-            document.querySelector(".info-download").innerHTML = `Démarrage du jeu en cours`
+            document.querySelector(".info-download").innerHTML = `Iniciando o jogo atual`
         })
         
         launcher.on('close', (e) => {
