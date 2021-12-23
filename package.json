@@ -12,10 +12,10 @@
     "frame": false,
     "resizable": false,
     "position": "center",
-    "icon": "app/assets/images/icons/icon.png"
+    "icon": "app/assets/images/icons/icon.ico"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
-  "url": "http://www.minecraft.robertinho.net",
+  "url": "http://boberto.net:3060/data/cliente",
   "user": "",
   "webkit": {"plugin": true},
   "scripts": {

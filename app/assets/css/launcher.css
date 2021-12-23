@@ -29,7 +29,7 @@ body {
 
 .frame {
     background: transparent;
-    position: absolute;
+    position: fixed;
     display: table;
     top: 0px;
     right: 0px;
