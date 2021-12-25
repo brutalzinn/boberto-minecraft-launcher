@@ -20,6 +20,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         } catch (err) {
             document.querySelector(".info-download").innerHTML = `Ocorreu um erro ao forçar a atualização.`
         }
+        document.querySelector(".info-download").style.display = "block"
 
     }
 

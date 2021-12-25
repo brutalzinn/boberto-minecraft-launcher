@@ -65,9 +65,9 @@ async function checkUpdate(){
   });
 
   toggleProgress();
-  setStatus(`Baixe a atualização`);
+  setStatus(`Baixando atualização..`);
   const file = await updater.download(manifest);
-  setStatus(`Descompacte a atualização`);
+  setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
   setStatus(`Reiniciar`);
@@ -90,10 +90,10 @@ function startLauncher(){
 }
 
 function shutdown(text){
-  setStatus(`${text}<br>Parar em 5s`);
+  setStatus(`${text}<br>Fechando em 5s`);
   let i = 4;
   setInterval(() => {
-    setStatus(`${text}<br>Parar em ${i--}s`);
+    setStatus(`${text}<br>Fechando em ${i--}s`);
     if(i < 0) win.close();
   }, 1000);
 }
