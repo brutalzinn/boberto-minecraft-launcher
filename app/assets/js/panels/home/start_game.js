@@ -1,4 +1,6 @@
 const {launch} = require('minecraft-java-core');
+const fs = require('fs');
+
 const launcher = new launch();
 const msmc = require("msmc-luuxis");
 const pkg = require('../package.json');
@@ -8,6 +10,19 @@ const { auth, config } = require('./assets/js/utils.js');
 
 
 document.querySelector(".play-btn").addEventListener("click", () => {
+    if (document.getElementById('force-play').checked) {
+        document.querySelector(".info-download").innerHTML = `Forçando atualização..`
+        let dir = dataDirectory
+        try {
+            fs.rmdirSync(dir, { recursive: true });
+            document.querySelector(".info-download").innerHTML = `Iniciando atualização em modo forçado..`
+
+        } catch (err) {
+            document.querySelector(".info-download").innerHTML = `Ocorreu um erro ao forçar a atualização.`
+        }
+
+    }
+
     document.querySelector(".play-btn").style.display = "none"
     document.querySelector(".info-download").style.display = "block"
     config.config().then(config => {
@@ -81,7 +96,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
             }
             document.querySelector(".progress-bar").style.display = "none"
             document.querySelector(".info-download").style.display = "none"
-            document.querySelector(".info-download").innerHTML = `Vérification`
+            document.querySelector(".info-download").innerHTML = `Verificação`
             document.querySelector(".play-btn").style.display = "block"
         })
     })

@@ -17,14 +17,17 @@
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
   "url": "http://boberto.net/data/cliente",
   "user": "",
-  "webkit": {"plugin": true},
+  "webkit": {
+    "plugin": true
+  },
   "scripts": {
     "start": "run --64 --mirror https://dl.nwjs.io/ .",
     "server": "npm install && node node_modules/emc-core-luuxis/utils/builder.js --v=1.0",
     "build:win": "npm install && build --win --x64 --mirror https://dl.nwjs.io/ .",
     "build:mac": "npm install && build --mac --x64 --mirror https://dl.nwjs.io/ .",
     "build:linux": "npm install && build --linux --x64 --mirror https://dl.nwjs.io/ .",
-    "build:all": "npm run build:linux && npm run build:mac && npm run build:win"
+    "build:all": "npm run build:linux && npm run build:mac && npm run build:win",
+    "dev": "nodemon --exec npm start"
   },
   "license": "CC0",
   "build": {
@@ -73,6 +76,7 @@
   "dependencies": {
     "minecraft-java-core": "^1.1.4",
     "msmc-luuxis": "^1.0.3",
+    "nodemon": "^2.0.15",
     "nw-autoupdater-luuxis": "^1.1.6"
   }
 }

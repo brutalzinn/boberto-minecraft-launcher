@@ -1,13 +1,13 @@
 .player-connect-number {
     position: absolute;
     width: 40%;
-    height: 50%;
+    height: 30%;
     font-size: 130%;
     border-radius: 20px;
     margin-left: 20%;
     color: azure;
     text-align: center;
-    margin-top: 1.7%;
+    margin-top: 4%;
     background: #64bf6d80;
 }
 
