@@ -7,12 +7,18 @@ const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { auth, config } = require('./assets/js/utils.js');
+let modpack = {}
 
+document.querySelector(".select-modpacks").addEventListener('change', function() {
+    config.modpacks().then(config => {
+         modpack = config.find(e => e.id == Number(this.value))
+    })
+  });
 
 document.querySelector(".play-btn").addEventListener("click", () => {
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
-        let dir = dataDirectory
+        let dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
         try {
             fs.rmdirSync(dir, { recursive: true });
             document.querySelector(".info-download").innerHTML = `Iniciando atualização em modo forçado..`
@@ -29,7 +35,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         const config_launcher = require(dataDirectory + "/" + config.dataDirectory + "/config.json")
 
         if(config.game_url === "" || config.game_url === undefined || config.game_url === null) {
-            var url = `${pkg.url}/files/`
+            var url = `${pkg.url}/files?modpack=${modpack.id}`
         } else {
             var url = config.game_url
         }
@@ -50,8 +56,8 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         let opts = {
             url: url,
             authorization: authenticator,
-            path: `${dataDirectory}/${config.dataDirectory}`,
-            version: config.game_version,
+            path: `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`,
+            version: modpack.game_version,
             detached: true,
             java: config.java,
             custom: config.custom,

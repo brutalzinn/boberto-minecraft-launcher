@@ -2,8 +2,9 @@ const { config } = require('./assets/js/utils.js');
 //let modpackForm = document.querySelector(".container-modpacks")
 let modPackSelector = document.querySelector(".select-modpacks")
 
-
 let modpack_var = config.modpacks().then(config => {
+
+
  // modpackForm.innerHTML = ``
   if(config.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
@@ -64,4 +65,3 @@ function NewsAutoRefresh(){
 
 
 
-s
