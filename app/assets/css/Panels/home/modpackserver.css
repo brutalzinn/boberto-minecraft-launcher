@@ -1,0 +1,50 @@
+.modpack-list {
+    position: absolute;
+    background: #222222;
+    border-radius: 20px;
+    text-align: center;
+    width: 55%;
+    color: black;
+    margin-top: 1%;
+    margin-left: 4%;
+}
+.select-modpacks {
+    width: 100%;
+}
+
+.modpack-text {
+    color: azure;
+}
+
+.container-modpacks {
+    margin: 2%;
+    background: #2b2b2b;
+    border-radius: 20px;
+}
+
+.newsTitle {
+    color: azure;
+}
+
+.modpackBody {
+    color: azure;
+    background: #3b3b3b;
+    text-align: left;
+    border-radius: 20px;
+}
+
+.texemodpackDirectory {
+    margin: 2%;
+}
+
+.modpackImage {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.modpackAuthor {
+    padding-bottom: 2%;
+    padding-right: 2%;
+    text-align: right;
+}

@@ -1,6 +1,6 @@
 {
   "name": "Boberto-Minecraft-Launcher",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
@@ -15,7 +15,7 @@
     "icon": "app/assets/images/icons/icon.ico"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
-  "url": "http://boberto.net/data/cliente",
+  "url": "http://localhost/cliente",
   "user": "",
   "webkit": {
     "plugin": true
