@@ -1,10 +1,10 @@
 const { config } = require('./assets/js/utils.js');
-let modpackForm = document.querySelector(".container-modpacks")
+//let modpackForm = document.querySelector(".container-modpacks")
 let modPackSelector = document.querySelector(".select-modpacks")
 
 
 let modpack_var = config.modpacks().then(config => {
-  modpackForm.innerHTML = ``
+ // modpackForm.innerHTML = ``
   if(config.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
   } else {
@@ -16,6 +16,18 @@ let modpack_var = config.modpacks().then(config => {
       var modpackGameVersion = config[i].game_version
       modPackSelector.innerHTML += `<option value="${i}">${modpackName}</option>`
     }
+
+
+
+
+
+
+
+
+
+
+
+
       // if (modpackImage === "") {
       //   modpackForm.innerHTML += 
       //   `<div class="modpackBody">
@@ -34,20 +46,21 @@ let modpack_var = config.modpacks().then(config => {
       //   <div class="modpackAuthor">Par ${modpackAuthor}, le ${modpackGameVersion}</div>`
       // }
     
+  
   }
-  // NewsAutoRefresh()
+  NewsAutoRefresh()
 })
 
-// function NewsAutoRefresh(){
-//   config.config().then(config => {
-//     const config_var = require(`${dataDirectory}/${config.dataDirectory}/config.json`)
-//     if(config_var.Launcher.NewsAutoRefresh === true){
-//       setInterval(function(){
-//         modpack_var
-//       }, 600000)
-//     }
-//   })
-// }
+function NewsAutoRefresh(){
+  config.config().then(config => {
+    const config_var = require(`${dataDirectory}/${config.dataDirectory}/config.json`)
+    if(config_var.Launcher.NewsAutoRefresh === true){
+      setInterval(function(){
+        modpack_var
+      }, 600000)
+    }
+  })
+}
 
 
 
