@@ -1,14 +1,21 @@
 const { config } = require('./assets/js/utils.js');
+const { status } = require('minecraft-java-core');
+
 let modPackSelector = document.querySelector(".select-modpacks")
 
-function modPackInfo(){
+ function modPackInfo(){
   let modpackInfoHtml = document.querySelector(".modpack-info")
   let modpack_selected = config.modpack
+
   if (modpack_selected.img === "") {
+
     modpackInfoHtml.innerHTML = 
       `<div class="modpackBody">
       <div class="modpackName">${modpack_selected.name}</div>
       <div class="texemodpackDirectory">${modpack_selected.description}</div>
+      
+      <div class="texemodpackDirectory">Status:${modpack_selected.status  ? "Online" : "Offline"}</div>
+
       <div class="modpackAuthor">Versão: ${modpack_selected.game_version} </div>
       <div class="modpackAuthor">Autor: ${modpack_selected.author}</div>
       </div>
@@ -18,6 +25,8 @@ function modPackInfo(){
         ` <div class="modpackBody" style="background-image: url(${modpack_selected.img})">
         <div class="modpackName">${modpack_selected.name}</div>
         <div class="texemodpackDirectory">${modpack_selected.description}</div>
+        <div class="texemodpackDirectory">Status:${modpack_selected.status ? "Online" : "Offline"}</div>
+
       <div class="modpackAuthor">Versão: ${modpack_selected.game_version} </div>
       <div class="modpackAuthor">Autor: ${modpack_selected.author}</div>
       </div>
@@ -36,7 +45,7 @@ document.querySelector(".select-modpacks").addEventListener('change', function()
 });
 
 
-let modpack_var = config.modpacks().then(modpack => {
+let modpack_var = config.modpacks().then( async modpack => {
   if(modpack.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
   } else {
@@ -48,9 +57,14 @@ let modpack_var = config.modpacks().then(modpack => {
       // var modpackAuthor = modpack[i].author
       // var modpackGameVersion = modpack[i].game_version
       var modpackDefault = modpack[i].default
+      modpack[i].status = await status.StatusServer( modpack[i].server_ip, parseInt( modpack[i].server_port))
+
+     
+      
       if(modpackDefault){
         config.modpack = modpack[i]  
       }
+
       modPackSelector.innerHTML += `<option value="${i}">${modpackName}</option>`
     }
     modPackSelector.value = config.modpack.id

@@ -20,6 +20,9 @@ const splashMessage = document.querySelector(".splash-message");
 const splashAuthor = document.querySelector(".splash-author");
 const message = document.querySelector(".message");
 const progress = document.querySelector("progress");
+try {
+  require('electron-reloader')(module)
+} catch (_) {}
 document.addEventListener('DOMContentLoaded', () => { startLauncher() });
 
 async function startAnimation(){

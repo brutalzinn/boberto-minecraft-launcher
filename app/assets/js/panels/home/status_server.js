@@ -11,7 +11,7 @@ config.info().then(async (config)  => {
         let status_json = StatusServer.raw.vanilla
         document.querySelector(".player-connect").innerHTML = ""
         if(status_json.raw.players.online === 0){
-            document.querySelector(".player-connect-number").innerHTML = `Nenhum jogador conectado`;
+            // document.querySelector(".player-connect-number").innerHTML = `Nenhum jogador conectado`;
             document.querySelector(".player-connect").innerHTML = `Nenhum jogador conectado`;
         } else if (status_json.raw.players.online === 1){
             document.querySelector(".player-connect-number").innerHTML = `${status_json.raw.players.online} jogador conectado atualmente`;
