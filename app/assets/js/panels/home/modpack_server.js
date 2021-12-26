@@ -16,8 +16,8 @@ let modPackSelector = document.querySelector(".select-modpacks")
       
       <div class="texemodpackDirectory">Status:${modpack_selected.status  ? "Online" : "Offline"}</div>
 
-      <div class="modpackAuthor">Versão: ${modpack_selected.game_version} </div>
-      <div class="modpackAuthor">Autor: ${modpack_selected.author}</div>
+      <div class="Version">Versão: ${modpack_selected.game_version} </div>
+      <div class="Author">Autor: ${modpack_selected.author}</div>
       </div>
       `
     } else {
@@ -27,8 +27,8 @@ let modPackSelector = document.querySelector(".select-modpacks")
         <div class="texemodpackDirectory">${modpack_selected.description}</div>
         <div class="texemodpackDirectory">Status:${modpack_selected.status ? "Online" : "Offline"}</div>
 
-      <div class="modpackAuthor">Versão: ${modpack_selected.game_version} </div>
-      <div class="modpackAuthor">Autor: ${modpack_selected.author}</div>
+      <div class="Version">Versão: ${modpack_selected.game_version} </div>
+      <div class="Author">Autor: ${modpack_selected.author}</div>
       </div>
      `
     }

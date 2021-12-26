@@ -22,8 +22,13 @@
     border-radius: 20px;
 }
 
-.newsTitle {
+.Version {
     color: azure;
+    margin: 2%;
+}
+.Author {
+    color: azure;
+    margin: 2%;
 }
 .modpackName {
     text-align: center;
