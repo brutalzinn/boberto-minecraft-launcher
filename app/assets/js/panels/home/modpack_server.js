@@ -36,9 +36,9 @@ let modPackSelector = document.querySelector(".select-modpacks")
 }
 document.querySelector(".select-modpacks").addEventListener('change', function() {
   if(config.modpack_list === 0){
-    return;
+    return
   }
-  config.modpack = config.modpack_list.find(e => e.id == Number(this.value))
+  config.modpack = config.modpack_list.find(e => e.id == this.value)
   if(config.modpack != null){
     modPackInfo()
   }
@@ -51,21 +51,19 @@ let modpack_var = config.modpacks().then( async modpack => {
   } else {
     config.modpack_list = modpack
     for (let i = 0; i < modpack.length; i++) {
-      var modpackName = modpack[i].name
+      let modpackName = modpack[i].name
       // var modpackDirectory = modpack[i].directory
       // var modpackImage = modpack[i].img
       // var modpackAuthor = modpack[i].author
       // var modpackGameVersion = modpack[i].game_version
-      var modpackDefault = modpack[i].default
+      let modpackDefault = modpack[i].default
       modpack[i].status = await status.StatusServer( modpack[i].server_ip, parseInt( modpack[i].server_port))
 
-     
-      
       if(modpackDefault){
         config.modpack = modpack[i]  
       }
 
-      modPackSelector.innerHTML += `<option value="${i}">${modpackName}</option>`
+      modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
     }
     modPackSelector.value = config.modpack.id
     modPackInfo()

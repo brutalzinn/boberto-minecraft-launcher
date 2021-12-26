@@ -12,9 +12,14 @@ const { auth, config } = require('./assets/js/utils.js');
 
 document.querySelector(".play-btn").addEventListener("click", () => {
     let modpack = config.modpack
+    
+
+    document.querySelector(".play-btn").style.display = "none"
+    document.querySelector(".info-download").style.display = "block"
+    config.config().then(config => {
+        let dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
-        let dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
         try {
             fs.rmdirSync(dir, { recursive: true });
             document.querySelector(".info-download").innerHTML = `Iniciando atualização em modo forçado..`
@@ -22,12 +27,8 @@ document.querySelector(".play-btn").addEventListener("click", () => {
         } catch (err) {
             document.querySelector(".info-download").innerHTML = `Ocorreu um erro ao forçar a atualização.`
         }
-
+        document.querySelector(".info-download").style.display = "block"
     }
-
-    document.querySelector(".play-btn").style.display = "none"
-    document.querySelector(".info-download").style.display = "block"
-    config.config().then(config => {
         const config_launcher = require(dataDirectory + "/" + config.dataDirectory + "/config.json")
 
         if(config.game_url === "" || config.game_url === undefined || config.game_url === null) {
@@ -48,7 +49,7 @@ document.querySelector(".play-btn").addEventListener("click", () => {
             var authenticator = auth.user
         }
        
-        
+        console.log("#####2 ",`${dataDirectory}/${config.dataDirectory}/${modpack.directory}`)
         let opts = {
             url: url,
             authorization: authenticator,
