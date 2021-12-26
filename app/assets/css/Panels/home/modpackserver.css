@@ -4,12 +4,12 @@
     border-radius: 20px;
     text-align: center;
     width: 55%;
-    color: black;
+    color: white;
     margin-top: 1%;
     margin-left: 4%;
 }
 .select-modpacks {
-    width: 100%;
+    width: 50%;
 }
 
 .modpack-text {
@@ -25,7 +25,9 @@
 .newsTitle {
     color: azure;
 }
-
+.modpackName {
+    text-align: center;
+}
 .modpackBody {
     color: azure;
     background: #3b3b3b;

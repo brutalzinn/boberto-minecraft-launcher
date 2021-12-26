@@ -10,6 +10,11 @@ const info = url + "/launcher/config-launcher/info.json";
 const news = url + "/launcher/news-launcher/news-launcher.json";
 const modpacks = url + "/launcher/config-launcher/modpacks.json";
 
+
+
+
+module.exports.modpack = {}
+
 module.exports.config = getData;
 
 function getData() {

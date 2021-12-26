@@ -7,15 +7,11 @@ const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { auth, config } = require('./assets/js/utils.js');
-let modpack = {}
 
-document.querySelector(".select-modpacks").addEventListener('change', function() {
-    config.modpacks().then(config => {
-         modpack = config.find(e => e.id == Number(this.value))
-    })
-  });
+
 
 document.querySelector(".play-btn").addEventListener("click", () => {
+    let modpack = config.modpack
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
         let dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
