@@ -36,6 +36,8 @@ async function startAnimation(){
   maintenanceCheck();
 }
 
+
+
 async function maintenanceCheck(){
   nw.App.clearCache();
   if(Dev) return startLauncher();  

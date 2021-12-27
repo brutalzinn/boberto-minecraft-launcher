@@ -13,9 +13,7 @@ let modPackSelector = document.querySelector(".select-modpacks")
       `<div class="modpackBody">
       <div class="modpackName">${modpack_selected.name}</div>
       <div class="texemodpackDirectory">${modpack_selected.description}</div>
-      
-      <div class="texemodpackDirectory">Status:${modpack_selected.status  ? "Online" : "Offline"}</div>
-
+      <div class="class-status">Status: Carregando...</div>
       <div class="Version">Versão: ${modpack_selected.game_version} </div>
       <div class="Author">Autor: ${modpack_selected.author}</div>
       </div>
@@ -25,16 +23,18 @@ let modPackSelector = document.querySelector(".select-modpacks")
         ` <div class="modpackBody" style="background-image: url(${modpack_selected.img})">
         <div class="modpackName">${modpack_selected.name}</div>
         <div class="texemodpackDirectory">${modpack_selected.description}</div>
-        <div class="texemodpackDirectory">Status:${modpack_selected.status ? "Online" : "Offline"}</div>
-
+        <div class="class-status">Status: Carregando...</div>
       <div class="Version">Versão: ${modpack_selected.game_version} </div>
       <div class="Author">Autor: ${modpack_selected.author}</div>
       </div>
      `
     }
-
+    status.StatusServer( modpack_selected.server_ip, parseInt( modpack_selected.server_port)).then((result)=>
+    {
+      document.querySelector(".class-status").innerHTML = `<div class="class-status">Status: ${result ? "Online" : "Offline"}</div>`
+    })
 }
-document.querySelector(".select-modpacks").addEventListener('change', function() {
+  document.querySelector(".select-modpacks").addEventListener('change', function() {
   if(config.modpack_list === 0){
     return
   }
@@ -44,8 +44,9 @@ document.querySelector(".select-modpacks").addEventListener('change', function()
   }
 });
 
+ 
 
-let modpack_var = config.modpacks().then( async modpack => {
+let modpack_var = config.modpacks().then( modpack => {
   if(modpack.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
   } else {
@@ -57,7 +58,6 @@ let modpack_var = config.modpacks().then( async modpack => {
       // var modpackAuthor = modpack[i].author
       // var modpackGameVersion = modpack[i].game_version
       let modpackDefault = modpack[i].default
-      modpack[i].status = await status.StatusServer( modpack[i].server_ip, parseInt( modpack[i].server_port))
 
       if(modpackDefault){
         config.modpack = modpack[i]  

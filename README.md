@@ -40,21 +40,21 @@
 
 **<p align="center">Launcher functions</p>**
 
-- Atualização automática.
+- Automatic Update.
 
-- Lançador de manutenção.
+- Maintenance launcher.
 
-- Manutenção de mensagens personalizadas.
+- Maintenance of personalized messages.
 
-- Status completo do servidor.
+- Complete server status.
 
-- Autenticação Mojang.
+- Mojang authentication.
 
-- Autenticação da Microsoft.
+- Microsoft authentication.
 
-- Autenticação de crack.
+- Crack authentication.
 
-- Aceita todas as versões do Minecraft 1.0> 1.18.x (Forge, Fabric etc).
+- Supports all Minecraft 1.0> 1.18.x versions (Forge, Fabric etc).
 
 - Multi modpack support with different minecraft versions
 
