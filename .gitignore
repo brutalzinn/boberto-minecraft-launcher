@@ -4,4 +4,5 @@
 /dist/
 node-v*
 AppData
-web/files/files
+/web/cliente/files/files/*
+/web/vendor/*

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "21b8598b-0dab-4068-b046-9ee6b7ecd4d6",
+    "name": "Mod teste",
+    "directory": "modpack-teste",
+    "default": false,
+    "description": "descrição de me modpack teste.",
+    "game_version": "1.16.5",
+    "forge_version": "1.16.5-38.6.40",
+    "server_ip": "boberto.net",
+    "server_port": "25566",
+    "img": "http://localhost/cliente/launcher/imagem-launcher/default.png",
+    "author": ""
+  },
+  {
+    "id": "9aa9138a-89a2-4974-86df-fcfaa6d3f769",
+    "name": "Modpack padrão",
+    "directory": "modpack-padrao",
+    "default": true,
+    "description": "Esse será o nosso modpack padrão.",
+    "game_version": "1.12.2",
+    "forge_version": "1.12.2-38.6.40",
+    "server_ip": "boberto.net",
+    "server_port": "25565",
+    "img": "http://localhost/cliente/launcher/imagem-launcher/default.png",
+    "author": "robertocpaes.dev"
+  }
+]

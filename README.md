@@ -1,35 +1,33 @@
-<p align="center"><img src="./app/assets/images/icons/icon.png" width="65%" height="65%" alt="Uzurion"></p>
 
-<h1 align="center">Uzurion Launcher</h1>
+# Boberto Launcher
+
+### This launcher is based on [luuxis Uzurion-Launcher](https://github.com/luuxis/Uzurion-Launcher) with some more implementations
+
+<p align="center"><img src="./app/assets/images/icons/icon.png" width="65%" height="65%" alt="Boberto"></p>
+
+<h1 align="center">Boberto Launcher</h1>
 
 
-
-[<p align="center">
-<img src="https://img.shields.io/badge/build-pré%20beta-orange.svg?style=for-the-badge" alt="travis">](https://github.com/luuxis/Uzurion-Launcher/releases) 
-[<img src="https://img.shields.io/badge/version-V2.0.0-orange.svg?style=for-the-badge" alt="downloads">](https://github.com/luuxis/Uzurion-Launcher/releases) 
-[<img src="https://img.shields.io/badge/plateforme-win,%20mac,%20linux-blue.svg?style=for-the-badge"  height="28px" alt="stark">](https://github.com/luuxis/Uzurion-Launcher/releases) </p>
-
+** Clone e install dependencies **
 
 ---
-
-**Cloner et installer les dépendances**
-
-```console
-> git clone https://github.com/luuxis/Uzurion-Launcher.git
+```
+> git clone https://github.com/brutalzinn/boberto-minecraft-launcher.git
 > cd Uzurion-Launcher
 > npm install
+> docker-compose up
 ```
 
 ---
 
-**Lancer l'application**
+**Start application**
 
 ```console
 > npm start
 ```
 ---
 
-**Création du build**
+**Build creation**
 
 | Platform    | Command              |
 | ----------- | -------------------- |
@@ -40,38 +38,33 @@
 
 ---
 
-**<p align="center">Fonctionnalité du launcher.</p>**
+**<p align="center">Launcher functions</p>**
 
-- Mise à jour automatique.
+- Atualização automática.
 
-- Maintenance launcher.
+- Lançador de manutenção.
 
-- Maintenance message custom.
+- Manutenção de mensagens personalizadas.
 
-- Statut serveur complet.
+- Status completo do servidor.
 
-- Authentification mojang.
+- Autenticação Mojang.
 
-- Authentification Microsoft.
+- Autenticação da Microsoft.
 
-- Authentification crack.
+- Autenticação de crack.
 
-- Accepte toutes versions de Minecraft 1.0 > 1.18.x (Forge, Fabric etc).
+- Aceita todas as versões do Minecraft 1.0> 1.18.x (Forge, Fabric etc).
 
----
-**<p align="center">Configurer votre launcher.</p>**
+- Multi modpack support with different minecraft versions
 
-- [J'ai fait un tuto en video.](https://youtu.be/fiyf_iZNeWE) 
+- Force update modpack button
 
-
-
----
+This launcher is originaly create by luuxis. 
+Feel free to join us community on Discord.
 
 [<p align="center"><img src="https://discordapp.com/api/guilds/819729377650278420/embed.png?style=banner4" alt="discord">](https://discord.gg/X54Qb9em9Y) 
 ---
 
-
-[releases]: https://github.com/luuxis/Uzurione-Launcher/releases 'releases'
-[build]: https://github.com/luuxis/Uzurion-Launcher/releases 'build'
 
 
