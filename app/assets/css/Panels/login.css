@@ -113,15 +113,40 @@
   cursor: pointer;
 }
 
+.noauth-button {
+  transition: all 0.25s ease;
+  background: linear-gradient(to right bottom, #54f659, #59e860, #5dda65, #61cd6a, #64bf6d);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 0px solid rgba(0,0,0,0);
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+}
+
+.loginSpanPremium{
+  color: white;
+  cursor: pointer;
+}
 .loginSpanDim {
   color: white;
   cursor: pointer;
 }
+.loginSpanNoAuth {
+  color: white;
+  cursor: pointer;
+}
+
 .loginRemember {
   cursor: pointer;
 }
 
 .loginSpanDim:hover {
+  color: rgb(82, 82, 82);
+}
+.loginSpanPremium:hover {
+  color: rgb(82, 82, 82);
+}
+.loginSpanNoAuth:hover {
   color: rgb(82, 82, 82);
 }
 

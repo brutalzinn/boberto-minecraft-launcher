@@ -5,7 +5,7 @@ config.info().then(async (config)  => {
     let StatusServer = await status.StatusServer(config.ip_server, parseInt(config.port_server))
     
     if(!StatusServer){
-        document.querySelector(".player-connect-number").innerHTML = "O servidor está fechado no momento.";
+     //   document.querySelector(".player-connect-number").innerHTML = "O servidor está fechado no momento.";
         document.querySelector(".player-connect").innerHTML = "O servidor está fechado no momento.";
     } else {
         let status_json = StatusServer.raw.vanilla

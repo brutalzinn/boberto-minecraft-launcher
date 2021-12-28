@@ -35,6 +35,7 @@ config.config().then(res => {
                 }
             },
             "Login": {
+                "Mode":0,
                 "UserConnect": null,
                 "Account": null
             }
