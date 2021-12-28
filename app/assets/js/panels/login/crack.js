@@ -4,6 +4,8 @@ const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? pro
 document.querySelector(`.online`).style.display = "none"
 document.querySelector(`.microsoft-btn`).style.display = "none"
 document.querySelector(`.loginSpanDim`).style.display = "none"
+document.querySelector(`.loginSpanNoAuth`).style.display = "none"
+
 document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "Insira seu nome de jogador para jogar no mundo bobertástico. </br> Esse launcher se destina a uso exclusivo dos meus amigos. </br>E não deve ser compartilhado com terceiros."
 document.querySelector(`.uzurionAppLoginCardLabel`).innerHTML = "nome do usuário"
 document.querySelector(".uzurionAppGenHeader").style.display = "block"
@@ -45,6 +47,16 @@ document.querySelector(".login-btn").addEventListener("click", () => {
         document.querySelector(".info-login").innerHTML = "error"
         document.querySelector(".info-login").style.color = "red";
         document.querySelector(".info-login").style.display = "block"
+    })
+})
+document.querySelector(".loginSpanPremium").addEventListener("click", () => {
+    config.config().then(res => {
+    const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+    file.Login.UserConnect = null
+    file.Login.Account = null
+    file.Login.Mode = 1
+    location.href = './launcher.html';
+
     })
 })
 

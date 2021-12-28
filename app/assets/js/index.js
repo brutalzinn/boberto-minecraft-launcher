@@ -36,6 +36,8 @@ async function startAnimation(){
   maintenanceCheck();
 }
 
+
+
 async function maintenanceCheck(){
   nw.App.clearCache();
   if(Dev) return startLauncher();  
@@ -52,7 +54,7 @@ async function maintenanceCheck(){
 }
 
 async function checkUpdate(){
-  setStatus(`Recherche de mises à jour`);
+  setStatus(`Checando atualização..`);
   const manifest = await fetch(manifestUrl).then(res => res.json());
   const update = await updater.checkNewVersion(manifest);
   if(!update) return startLauncher();

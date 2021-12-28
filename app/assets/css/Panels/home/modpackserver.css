@@ -1,45 +1,62 @@
-.news {
+.modpack-list {
     position: absolute;
     background: #222222;
     border-radius: 20px;
     text-align: center;
     width: 55%;
-    color: black;
-    margin-top: 50%;
+    color: white;
+    margin-top: 1%;
     margin-left: 4%;
 }
-.news-text {
-    color: azure;
+.select-modpacks {
+    width: 50%;
 }
 
-.container-news {
+.modpack-text {
+    color: azure;
+}
+.splash-loading{
+    position: absolute;
+    text-align: center;
+    margin: 2%;
+    color: azure;
+
+}
+.container-modpacks {
     margin: 2%;
     background: #2b2b2b;
     border-radius: 20px;
 }
 
-.newsTitle {
+.Version {
     color: azure;
+    margin: 2%;
 }
-
-.newsBody {
+.Author {
+    color: azure;
+    margin: 2%;
+}
+.modpackName {
+    text-align: center;
+}
+.modpackBody {
     color: azure;
     background: #3b3b3b;
     text-align: left;
     border-radius: 20px;
 }
 
-.texenewsbody {
+.texemodpackDirectory {
     margin: 2%;
 }
 
-.newsImage {
+.modpackImage {
     width: 100%;
     border-radius: 10px;
     margin-top: 2%;
     margin-bottom: 2%;
 }
-.newsAuthor {
+.modpackAuthor {
     padding-bottom: 2%;
     padding-right: 2%;
     text-align: right;

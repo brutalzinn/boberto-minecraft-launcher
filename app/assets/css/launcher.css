@@ -10,10 +10,15 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
+    width: auto;
     height: 0px;
 }
-
+::-webkit-scrollbar-track-piece  {
+	background-color: #3b3b3b;
+}
+::-webkit-scrollbar-thumb:vertical {
+	background-color: #666;
+}
 .dragbar {
     position: absolute;
     background: rgba(0, 0, 0, 0.5);

@@ -8,6 +8,12 @@ if((pkg.user) === undefined || (pkg.user) === ""){
 const config = url + "/launcher/config-launcher/config.json";
 const info = url + "/launcher/config-launcher/info.json";
 const news = url + "/launcher/news-launcher/news-launcher.json";
+const modpacks = url + "/launcher/config-launcher/modpacks.json";
+
+
+
+
+module.exports.modpack = {}
 
 module.exports.config = getData;
 
@@ -37,6 +43,17 @@ module.exports.news = getNews;
 function getNews() {
     return new Promise((resolve, reject) => {
         fetch(news, {cache: "no-cache"}).then(config => {
+            return resolve(config.json());
+        }).catch(error => {
+            return reject(error);
+        })
+    })
+}
+module.exports.modpacks = getModPacks;
+
+function getModPacks() {
+    return new Promise((resolve, reject) => {
+        fetch(modpacks, {cache: "no-cache"}).then(config => {
             return resolve(config.json());
         }).catch(error => {
             return reject(error);

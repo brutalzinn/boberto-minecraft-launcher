@@ -1,0 +1,31 @@
+version: "3"
+services:
+  launcher:
+    build: .
+    ports:
+      - "80:80"
+    restart: always
+    container_name: web-launcher
+    volumes:
+      - ./web:/var/www/html
+      - ./web/config/php.ini:/usr/local/etc/php/php.ini
+
+  # boberto-pgadmin:
+  #   container_name: boberto-pgadmin
+  #   image: dpage/pgadmin4
+  #   networks:
+  #     - default
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: root@root.com
+  #     PGADMIN_DEFAULT_PASSWORD: root
+  #   ports:
+  #     - "5050:80"
+
+  redis-compose:
+    image: redis
+    container_name: redis-launcher
+    command: redis-server --requirepass SUASENHA --appendonly yes
+    hostname: redis
+    ports:
+      - "6379:6379"
