@@ -58,9 +58,10 @@ function changePanel(V1, V2){
 })('login', 'home', 'settings')
 
 
-config.config().then(config => {
-  if(fs.existsSync(dataDirectory + "/" + config.dataDirectory + "/config.json")) {
-    let rawData = fs.readFileSync(dataDirectory + "/" + config.dataDirectory + "/config.json")
+config.config().then(res => {
+  config.config_cache = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
+  if(fs.existsSync(dataDirectory + "/" + res.dataDirectory + "/config.json")) {
+    let rawData = fs.readFileSync(dataDirectory + "/" + res.dataDirectory + "/config.json")
     let json = JSON.parse(rawData);
     
     if ((json.Login.UserConnect) === null){
@@ -90,7 +91,7 @@ config.config().then(config => {
         msmc.refresh(json.Login.Account.Microsoft.User.profile).then(user => {
           json.Login.UserConnect = "Microsoft"
           json.Login.Account = {"Microsoft":{"User": user}} 
-          fs.writeFileSync(`${dataDirectory}/${config.dataDirectory}/config.json`, JSON.stringify(json, true, 4), 'UTF-8')
+          fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(json, true, 4), 'UTF-8')
           document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${user.profile.name}/100`
           changePanel("", "home")
         })

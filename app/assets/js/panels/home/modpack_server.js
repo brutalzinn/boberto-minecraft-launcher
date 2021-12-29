@@ -5,7 +5,7 @@ let modPackSelector = document.querySelector(".select-modpacks")
 
  function modPackInfo(){
   let modpackInfoHtml = document.querySelector(".modpack-info")
-  let modpack_selected = config.modpack
+  let modpack_selected = config.modpack_selected
 
   if (modpack_selected.img === "") {
 
@@ -35,11 +35,11 @@ let modPackSelector = document.querySelector(".select-modpacks")
     })
 }
   document.querySelector(".select-modpacks").addEventListener('change', function() {
-  if(config.modpack_list === 0){
+  if(config.modpack_cache.length === 0){
     return
   }
-  config.modpack = config.modpack_list.find(e => e.id == this.value)
-  if(config.modpack != null){
+  config.modpack_selected = config.modpack_cache.find(e => e.id == this.value)
+  if(config.modpack_selected != null){
     modPackInfo()
   }
 });
@@ -47,11 +47,15 @@ let modPackSelector = document.querySelector(".select-modpacks")
  
 
 let modpack_var = config.modpacks().then( modpack => {
+ let nonpremiumuser =  config.config_cache.Login.Mode == 0
+ let premiumuser =  config.config_cache.Login.Mode == 1
+
   if(modpack.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
   } else {
-    config.modpack_list = modpack
+    config.modpack_cache = modpack
     for (let i = 0; i < modpack.length; i++) {
+   
       let modpackName = modpack[i].name
       // var modpackDirectory = modpack[i].directory
       // var modpackImage = modpack[i].img
@@ -60,12 +64,23 @@ let modpack_var = config.modpacks().then( modpack => {
       let modpackDefault = modpack[i].default
 
       if(modpackDefault){
-        config.modpack = modpack[i]  
+        config.modpack_selected = modpack[i]  
       }
+      
+      if (modpack[i].premium && premiumuser || !modpack[i].premium && premiumuser){
+        modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
+      }else if(!modpack[i].premium && nonpremiumuser){
+        modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
 
-      modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
+      }
+      
+
+     // modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
+
+
+
     }
-    modPackSelector.value = config.modpack.id
+    modPackSelector.value = config.modpack_selected.id
     modPackInfo()
 
 

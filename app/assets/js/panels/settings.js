@@ -44,12 +44,18 @@ config.config().then(res => {
             fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
         }
         fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(DEFAULT_CONFIG, true, 4), 'UTF-8')
+        config.config_cache = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
+
     }
+    
     import ("./settings/account.js")
     import ("./settings/java-directory.js")
     import ("./settings/resolution.js")
     import ("./settings/settings-launcher.js")
 })
+
+
+
 
 document.querySelector(".accountsettings").addEventListener("click", () => {
     tab('accountsettingstab')

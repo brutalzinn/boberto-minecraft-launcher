@@ -11,7 +11,7 @@ const { auth, config } = require('./assets/js/utils.js');
 
 
 document.querySelector(".play-btn").addEventListener("click", () => {
-    let modpack = config.modpack
+    let modpack = config.modpack_selected
     
 
     document.querySelector(".play-btn").style.display = "none"

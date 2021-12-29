@@ -9,11 +9,40 @@ const config = url + "/launcher/config-launcher/config.json";
 const info = url + "/launcher/config-launcher/info.json";
 const news = url + "/launcher/news-launcher/news-launcher.json";
 const modpacks = url + "/launcher/config-launcher/modpacks.json";
+var settings_cache = null
+
+module.exports.config_path = null
+
+module.exports.modpack_selected = {}
+module.exports.modpack_cache = {}
+module.exports.config_cache = {}
 
 
 
+module.exports.readsettings = ReadSettings;
 
-module.exports.modpack = {}
+function ReadSettings(){
+    
+    if(settings_cache != null){
+        return settings_cache
+    }
+
+    getData().then(res => {
+        console.log(res)
+        const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
+        settings_cache = file
+        return file
+    })
+}
+
+module.exports.saveSettings = SaveSettings;
+
+function SaveSettings(json){
+    if(settings_cache != null){
+         settings_cache = JSON.stringify(json, true, 4)
+    }
+    fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(json, true, 4), 'UTF-8')
+}
 
 module.exports.config = getData;
 
