@@ -57,10 +57,6 @@ let modpack_var = config.modpacks().then( modpack => {
     for (let i = 0; i < modpack.length; i++) {
    
       let modpackName = modpack[i].name
-      // var modpackDirectory = modpack[i].directory
-      // var modpackImage = modpack[i].img
-      // var modpackAuthor = modpack[i].author
-      // var modpackGameVersion = modpack[i].game_version
       let modpackDefault = modpack[i].default
 
       if(modpackDefault){
@@ -73,12 +69,6 @@ let modpack_var = config.modpacks().then( modpack => {
         modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
 
       }
-      
-
-     // modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
-
-
-
     }
     modPackSelector.value = config.modpack_selected.id
     modPackInfo()

@@ -24,6 +24,7 @@ services:
 
   redis-compose:
     image: redis
+    restart: always
     container_name: redis-launcher
     command: redis-server --requirepass SUASENHA --appendonly yes
     hostname: redis
