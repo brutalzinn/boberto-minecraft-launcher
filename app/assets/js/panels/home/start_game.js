@@ -1,27 +1,74 @@
 const {launch} = require('minecraft-java-core');
 const fs = require('fs');
-
+const crypto = require('crypto');
 const launcher = new launch();
 const msmc = require("msmc-luuxis");
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { auth, config } = require('./assets/js/utils.js');
+const path = require('path');
+const util = require('util');
 
 
+async function checkSHA1(file, hash){
+    const hex = crypto.createHash('sha1').update(fs.readFileSync(file)).digest('hex')
+    console.log(hex)
+    if(hex == hash) return true;
+    return false;
+}
+//this is wrong way. this type function is generic. Needs be in separeted folder immediatily.
+function sleep(ms){
+    return new Promise((r) => { setTimeout(r, ms) });
+  }
+async function checkModsFolder(url,modpack_dir){
+  
+    document.querySelector(".info-download").innerHTML = 'Confirmando mods..'
+    let data = await fetch(url).then(res => res.json());
+    var mods_server = []
+    var mods_delete = []
+    data.forEach(url => {
+        if(url.type == "MOD")
+        mods_server.push({
+            sha1: url.sha1,
+            size: url.size,
+            path: url.path,
+            type: url.type,
+            url: url.url
+        })
+    });
+        const readdir = util.promisify(fs.readdir);
+        let mods_dirs = await readdir(`${modpack_dir}/mods`)
+        for (let filename of mods_dirs) {
+            let mod_path = `mods/${filename}`
+            let mod =  mods_server.find(v=> v.path == mod_path)
+           if(mod == undefined || mod != undefined && !await checkSHA1(path.resolve(`${modpack_dir}/${mod.path}`).replace(/\\/g, "/"),mod.sha1)){
+            mods_delete.push(path.resolve(`${modpack_dir}/mods/${filename}`).replace(/\\/g, "/"))          
+            }
+        }
+       
+    if(mods_delete.length > 0){
+        document.querySelector(".info-download").innerHTML = 'Mods incompatíveis com o modpack detectados. <br/> Iniciando remoção.'
+        await sleep(1000)
+        mods_delete.forEach(filename => {
+        fs.unlinkSync(filename);
+        })
+    }
+    document.querySelector(".info-download").innerHTML = 'Todos os mods foram checados.'
+}
 
-document.querySelector(".play-btn").addEventListener("click", () => {
-    let modpack = config.modpack_selected
+document.querySelector(".play-btn").addEventListener("click", async () => {
+    var modpack = config.modpack_selected
     
 
     document.querySelector(".play-btn").style.display = "none"
     document.querySelector(".info-download").style.display = "block"
     config.config().then(config => {
-        let dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
+    let modpack_dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
         try {
-            fs.rmdirSync(dir, { recursive: true });
+            fs.rmdirSync(modpack_dir, { recursive: true });
             document.querySelector(".info-download").innerHTML = `Iniciando atualização em modo forçado..`
 
         } catch (err) {
@@ -49,11 +96,10 @@ document.querySelector(".play-btn").addEventListener("click", () => {
             var authenticator = auth.user
         }
        
-        console.log("#####2 ",`${dataDirectory}/${config.dataDirectory}/${modpack.directory}`)
         let opts = {
             url: url,
             authorization: authenticator,
-            path: `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`,
+            path: modpack_dir,
             version: modpack.game_version,
             detached: true,
             java: config.java,
@@ -65,8 +111,8 @@ document.querySelector(".play-btn").addEventListener("click", () => {
                 max: `${config_launcher.Settings.Java.RamMax}M`
             }
         }
-
-        launcher.launch(opts);
+        checkModsFolder(opts.url,opts.path).then(()=>launcher.launch(opts))
+        
         
         launcher.on('progress', (DL, totDL) => {
             document.querySelector(".progress-bar").style.display = "block"
