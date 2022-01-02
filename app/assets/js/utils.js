@@ -1,3 +1,8 @@
+const fs = require("fs");
+const path = require('path');
+const util = require('util');
+const crypto = require('crypto');
+
 module.exports = {
     config: require("./utils/config.js"),
     auth: require("./utils/auth.js"),
@@ -17,11 +22,8 @@ async function checkSHA1(file, hash){
      return new Promise((r) => { setTimeout(r, ms) });
    }
 
-module.exports.checkmodsfolder = checkModsFolder
 
- async function checkModsFolder(url,modpack_dir){
-   
-     document.querySelector(".info-download").innerHTML = 'Confirmando mods..'
+module.exports.checkmodsfolder = async function (url,modpack_dir){
      let data = await fetch(url).then(res => res.json());
      var mods_server = []
      var mods_delete = []
@@ -37,6 +39,18 @@ module.exports.checkmodsfolder = checkModsFolder
      });
          const readdir = util.promisify(fs.readdir);
          let mods_dirs = await readdir(`${modpack_dir}/mods`)
+    //      try{
+    //         fs.lstatSync(mods_dirs).isDirectory()
+    //    }catch(e){
+    //       // Handle error
+    //       if(e.code == 'ENOENT'){
+    //         //no such file or directory
+    //         //do something
+    //         return
+    //       }else {
+    //         //do something else
+    //       }
+    //    }
          for (let filename of mods_dirs) {
              let mod_path = `mods/${filename}`
              let mod =  mods_server.find(v=> v.path == mod_path)
@@ -46,13 +60,13 @@ module.exports.checkmodsfolder = checkModsFolder
          }
         
      if(mods_delete.length > 0){
-         document.querySelector(".info-download").innerHTML = 'Mods incompatíveis com o modpack detectados. <br/> Iniciando remoção.'
-         await sleep(1000)
          mods_delete.forEach(filename => {
+        if(fs.existsSync(filename) && fs.lstatSync(filename).isDirectory()){
+          fs.rmdirSync(filename, { recursive: true, force: true })
+        }else if(fs.existsSync(filename) && fs.lstatSync(filename).isFile())
          fs.unlinkSync(filename);
          })
      }
-     document.querySelector(".info-download").innerHTML = 'Todos os mods foram checados.'
  }
 
 module.exports.compare = compare

@@ -39,6 +39,8 @@ let modPackSelector = document.querySelector(".select-modpacks")
     return
   }
   config.modpack_selected = config.modpack_cache.find(e => e.id == this.value)
+  console.log(config.modpack_selected )
+
   if(config.modpack_selected != null){
     modPackInfo()
   }
@@ -71,6 +73,7 @@ let modpack_var = config.modpacks().then( modpack => {
       }
     }
     modPackSelector.value = config.modpack_selected.id
+    console.log(config.modpack_selected)
     modPackInfo()
 
 

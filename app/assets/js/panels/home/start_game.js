@@ -1,21 +1,17 @@
 const {launch} = require('minecraft-java-core');
 const fs = require('fs');
-const crypto = require('crypto');
 const launcher = new launch();
 const msmc = require("msmc-luuxis");
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { auth, config, checkmodsfolder } = require('./assets/js/utils.js');
-const path = require('path');
-const util = require('util');
+
 
 
 
 document.querySelector(".play-btn").addEventListener("click", async () => {
     var modpack = config.modpack_selected
-    
-
     document.querySelector(".play-btn").style.display = "none"
     document.querySelector(".info-download").style.display = "block"
     config.config().then(config => {
@@ -38,7 +34,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         } else {
             var url = config.game_url
         }
-
+        console.log("url",url)
         if(auth.user == undefined){
             if(config_launcher.Login.UserConnect == "Microsoft"){
                 var authenticator = msmc.getMCLC().getAuth(config_launcher.Login.Account.Microsoft.User)
@@ -66,8 +62,18 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
                 max: `${config_launcher.Settings.Java.RamMax}M`
             }
         }
-        checkmodsfolder(opts.url,opts.path).then(()=>launcher.launch(opts))
         
+        if(modpack.verify_mods){
+            console.log("verificando mods")
+            document.querySelector(".info-download").innerHTML = 'Confirmando mods..'
+             checkmodsfolder(opts.url, opts.path).then(()=>{
+                document.querySelector(".info-download").innerHTML = 'Todos os mods foram checados. </br> Iniciando modpack..'
+                launcher.launch(opts)
+            })
+        }else{
+            launcher.launch(opts)
+        }
+      
         
         launcher.on('progress', (DL, totDL) => {
             document.querySelector(".progress-bar").style.display = "block"
