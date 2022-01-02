@@ -4,6 +4,57 @@ module.exports = {
     Slider: require("./utils/slider.js")
 }
 
+
+async function checkSHA1(file, hash){
+     const hex = crypto.createHash('sha1').update(fs.readFileSync(file)).digest('hex')
+     console.log(hex)
+     if(hex == hash) return true;
+     return false;
+ }
+ module.exports.sleep = sleep
+
+ function sleep(ms){
+     return new Promise((r) => { setTimeout(r, ms) });
+   }
+
+module.exports.checkmodsfolder = checkModsFolder
+
+ async function checkModsFolder(url,modpack_dir){
+   
+     document.querySelector(".info-download").innerHTML = 'Confirmando mods..'
+     let data = await fetch(url).then(res => res.json());
+     var mods_server = []
+     var mods_delete = []
+     data.forEach(url => {
+         if(url.type == "MOD")
+         mods_server.push({
+             sha1: url.sha1,
+             size: url.size,
+             path: url.path,
+             type: url.type,
+             url: url.url
+         })
+     });
+         const readdir = util.promisify(fs.readdir);
+         let mods_dirs = await readdir(`${modpack_dir}/mods`)
+         for (let filename of mods_dirs) {
+             let mod_path = `mods/${filename}`
+             let mod =  mods_server.find(v=> v.path == mod_path)
+            if(mod == undefined || mod != undefined && !await checkSHA1(path.resolve(`${modpack_dir}/${mod.path}`).replace(/\\/g, "/"),mod.sha1)){
+             mods_delete.push(path.resolve(`${modpack_dir}/mods/${filename}`).replace(/\\/g, "/"))          
+             }
+         }
+        
+     if(mods_delete.length > 0){
+         document.querySelector(".info-download").innerHTML = 'Mods incompatíveis com o modpack detectados. <br/> Iniciando remoção.'
+         await sleep(1000)
+         mods_delete.forEach(filename => {
+         fs.unlinkSync(filename);
+         })
+     }
+     document.querySelector(".info-download").innerHTML = 'Todos os mods foram checados.'
+ }
+
 module.exports.compare = compare
 function compare(v1, v2) {
     if (v1===v2)
