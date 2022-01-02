@@ -39,18 +39,6 @@ module.exports.checkmodsfolder = async function (url,modpack_dir){
      });
          const readdir = util.promisify(fs.readdir);
          let mods_dirs = await readdir(`${modpack_dir}/mods`)
-    //      try{
-    //         fs.lstatSync(mods_dirs).isDirectory()
-    //    }catch(e){
-    //       // Handle error
-    //       if(e.code == 'ENOENT'){
-    //         //no such file or directory
-    //         //do something
-    //         return
-    //       }else {
-    //         //do something else
-    //       }
-    //    }
          for (let filename of mods_dirs) {
              let mod_path = `mods/${filename}`
              let mod =  mods_server.find(v=> v.path == mod_path)
