@@ -1,5 +1,5 @@
 {
-  "name": "Boberto-Minecraft-Launcher",
+  "name": "boberto-minecraft-launcher",
   "version": "2.0.3",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
@@ -15,7 +15,7 @@
     "icon": "app/assets/images/icons/icon.ico"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
-  "url": "http://boberto.net/data/cliente",
+  "url": "http://127.0.0.1/data/cliente",
   "user": "",
   "webkit": {
     "plugin": true
@@ -74,9 +74,9 @@
     "nwjs-builder-luuxis": "^1.15.0"
   },
   "dependencies": {
-    "minecraft-java-core": "^1.1.4",
-    "msmc-luuxis": "^1.0.3",
     "nodemon": "^2.0.15",
+    "minecraft-java-core": "^1.1.5-alpha.4",
+    "msmc": "^3.0.2",
     "nw-autoupdater-luuxis": "^1.1.6"
   }
 }

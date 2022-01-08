@@ -1,7 +1,7 @@
 const {launch} = require('minecraft-java-core');
 const fs = require('fs');
 const launcher = new launch();
-const msmc = require("msmc-luuxis");
+const msmc = require("msmc");
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
@@ -54,7 +54,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
             version: modpack.game_version,
             detached: true,
             java: config.java,
-            custom: config.custom,
+            custom: modpack.forge_version !== "",
             verify: config.verify,
             ignored: config.ignored,
             memory: {

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const msmc = require("msmc-luuxis");
+const msmc = require("msmc");
 const { Authenticator } = require('minecraft-java-core');
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { config } = require('./assets/js/utils.js');
@@ -55,7 +55,7 @@ function changePanel(V1, V2){
     panelsElem.appendChild(div);
     import (`./panels/${panel}.js`)
   }
-})('login', 'home', 'settings')
+})('settings', 'login', 'home')
 
 
 config.config().then(res => {
