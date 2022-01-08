@@ -60,7 +60,14 @@
 
 - Force update modpack button
 
-This launcher is originaly create by luuxis. 
+- Modpacks can be configured to non premium account or premium account. 
+
+- A easy tool to create modpacks and sync with web server [ModPack Creator](https://github.com/brutalzinn/CriadorDeMods)
+
+
+
+This launcher is originaly create by luuxis and adapted for my use case
+
 Feel free to join us community on Discord.
 
 [<p align="center"><img src="https://discordapp.com/api/guilds/819729377650278420/embed.png?style=banner4" alt="discord">](https://discord.gg/X54Qb9em9Y) 
