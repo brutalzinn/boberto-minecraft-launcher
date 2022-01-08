@@ -15,7 +15,6 @@ jobs:
       matrix:
         node-version: [12.x]
 
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -31,9 +30,6 @@ jobs:
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
         fallback: 1.0.0.0
-        
-    - name: Navigate to dIR
-      run: cd dist
 
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
