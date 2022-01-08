@@ -47,4 +47,3 @@ jobs:
        title: "Development Build"
        files: |
         ./dist/*.zip
-        ./dist/*.exe
