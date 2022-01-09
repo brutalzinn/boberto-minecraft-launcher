@@ -1,3 +1,4 @@
+const nodemon = require("nodemon");
 const AutoUpdater = require("nw-autoupdater-luuxis");
 const pkg = require("../package.json");
 if((pkg.user) === undefined || (pkg.user) === ""){
@@ -9,7 +10,6 @@ const manifestUrl = url + "/launcher/package.json";
 
 const { config, compare } = require('./assets/js/utils.js');
 const updater = new AutoUpdater(pkg, { strategy: "ScriptSwap" });
-const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 const win = nw.Window.get();
 const Dev = (window.navigator.plugins.namedItem('Native Client') !== null);
@@ -20,8 +20,11 @@ const splashAuthor = document.querySelector(".splash-author");
 const message = document.querySelector(".message");
 const progress = document.querySelector("progress");
 document.addEventListener('DOMContentLoaded', () => { startAnimation() });
-
+win.on('resize', (width, height) => {
+  win.resizeTo(400, 500);
+});
 async function startAnimation(){
+ 
   await sleep(100);
   document.querySelector("#splash").style.display = "block";
   await sleep(500);
@@ -53,6 +56,7 @@ async function maintenanceCheck(){
 }
 
 async function checkUpdate(){
+
   setStatus(`Checando atualização..`);
   const manifest = await fetch(manifestUrl).then(res => res.json());
   const update = await updater.checkNewVersion(manifest);

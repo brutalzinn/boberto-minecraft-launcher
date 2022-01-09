@@ -1,8 +1,7 @@
 @import "font.css";
  body {
-	background-image: url("../images/background/background_dirt.png");
+    background: url("../images/background/background_dirt.png");
 	font-family: "Poppins";
-	 letter-spacing: 0px;
 	 color: white;
 	 -webkit-user-select: none;
 }

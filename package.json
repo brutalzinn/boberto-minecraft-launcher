@@ -10,9 +10,9 @@
     "width": 400,
     "height": 500,
     "frame": false,
-    "resizable": false,
+    "resizable": true,
     "position": "center",
-    "icon": "app/assets/images/icons/icon.ico"
+    "icon": "app/assets/images/icons/icon.png"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
   "url": "http://127.0.0.1/data/cliente",
