@@ -14,7 +14,8 @@ jobs:
   build:
 
     runs-on: windows-latest
-
+    env:
+      URL: ${{ secrets.URL_DEV }}
 
     strategy:
       matrix:
@@ -36,12 +37,12 @@ jobs:
     - name: test files
       run: dir 
 
-    - name: Update package.json version
+    - name: Update package.json url
       uses: jossef/action-set-json-field@v1
       with:
         file: package.json
         field: url
-        value: teste
+        value: ${{ env.URL }}
 
     - name: Test new package json file
       run: type .\package.json
