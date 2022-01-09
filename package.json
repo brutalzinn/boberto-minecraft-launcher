@@ -6,7 +6,7 @@
   "main": "app/index.html",
   "author": "Luuxis e adaptado por robertocpaes.dev",
   "window": {
-    "title": "Boberto Minecraft update",
+    "title": "Boberto Minecraft Launcher Update",
     "width": 400,
     "height": 500,
     "frame": false,
@@ -31,7 +31,7 @@
   },
   "license": "CC0",
   "build": {
-    "appId": "Uzurion Launcher",
+    "appId": "Boberto Minecraft Launcher",
     "nwVersion": "0.55.0",
     "packed": true,
     "targets": [
@@ -59,10 +59,10 @@
       "icon": "./app/assets/images/icons/icon.ico"
     },
     "mac": {
-      "displayName": "Boberto Minecraft-Launcher",
+      "displayName": "Boberto-Minecraft-Launcher",
       "copyright": "copyright",
       "plistStrings": {
-        "CFBundleIdentifier": "Boberto Minecraft-Launcher"
+        "CFBundleIdentifier": "Boberto-Minecraft-Launcher"
       }
     },
     "nsis": {
@@ -71,10 +71,10 @@
     }
   },
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "nwjs-builder-luuxis": "^1.15.0"
   },
   "dependencies": {
-    "nodemon": "^2.0.15",
     "minecraft-java-core": "^1.1.5-alpha.4",
     "msmc": "^3.0.2",
     "nw-autoupdater-luuxis": "^1.1.6"
