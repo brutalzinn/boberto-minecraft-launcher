@@ -1,6 +1,5 @@
 const AutoUpdater = require("nw-autoupdater-luuxis");
 const pkg = require("../package.json");
-const fs = require('fs');
 if((pkg.user) === undefined || (pkg.user) === ""){
   var url = pkg.url
 } else {

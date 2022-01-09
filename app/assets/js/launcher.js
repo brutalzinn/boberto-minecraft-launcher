@@ -55,7 +55,8 @@ function changePanel(V1, V2){
     panelsElem.appendChild(div);
     import (`./panels/${panel}.js`)
   }
-})('settings', 'login', 'home')
+})('login', 'home', 'settings')
+
 
 
 config.config().then(res => {
