@@ -33,7 +33,7 @@ jobs:
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
-        fallback: 1.0.0.0
+        fallback: 1.0.0
 
     - name: Update package.json URL
       uses: jossef/action-set-json-field@v1
