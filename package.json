@@ -1,6 +1,6 @@
 {
   "name": "boberto-minecraft-launcher",
-  "version": "1.0.0",
+  "version": "2.0.3",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
@@ -31,7 +31,7 @@
   },
   "license": "CC0",
   "build": {
-    "appId": "Boberto Minecraft Launcher",
+    "appId": "Uzurion Launcher",
     "nwVersion": "0.55.0",
     "packed": true,
     "targets": [
@@ -71,10 +71,10 @@
     }
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
     "nwjs-builder-luuxis": "^1.15.0"
   },
   "dependencies": {
+    "nodemon": "^2.0.15",
     "minecraft-java-core": "^1.1.5-alpha.4",
     "msmc": "^3.0.2",
     "nw-autoupdater-luuxis": "^1.1.6"
