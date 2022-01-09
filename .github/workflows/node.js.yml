@@ -41,7 +41,7 @@ jobs:
       with:
         file: package.json
         field: url
-        value: ${{ secrets.URL_DEV }}
+        value: teste
 
     - name: Test new package json file
       run: type .\package.json
