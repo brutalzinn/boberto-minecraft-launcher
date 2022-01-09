@@ -6,7 +6,7 @@
   "main": "app/index.html",
   "author": "Luuxis e adaptado por robertocpaes.dev",
   "window": {
-    "title": "Boberto Minecraft Launcher Update",
+    "title": "Boberto Minecraft Launcher",
     "width": 400,
     "height": 500,
     "frame": false,

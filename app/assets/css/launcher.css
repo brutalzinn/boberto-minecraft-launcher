@@ -31,7 +31,9 @@ body {
     display: none;
 }
 
-
+.title_bar_launcher{
+    color:white;
+}
 .frame {
     background: transparent;
     position: fixed;

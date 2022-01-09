@@ -1,5 +1,6 @@
 const fs = require("fs");
 const msmc = require("msmc");
+const pkg = require("../package.json");
 const { Authenticator } = require('minecraft-java-core');
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { config } = require('./assets/js/utils.js');
@@ -27,6 +28,8 @@ if(process.platform == "win32") {
   document.querySelector("#close").addEventListener("click", () => {
     win.close();
   })
+  document.querySelector(".title_bar_launcher").innerHTML = `${pkg.window.title}-${pkg.version}`  
+
 }
 
 function changePanel(V1, V2){
@@ -55,7 +58,7 @@ function changePanel(V1, V2){
     panelsElem.appendChild(div);
     import (`./panels/${panel}.js`)
   }
-})('login', 'home', 'settings')
+})('settings','login', 'home')
 
 
 
