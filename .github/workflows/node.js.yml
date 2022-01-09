@@ -33,19 +33,22 @@ jobs:
     - name: Navigate to Workspace
       run: cd $GITHUB_WORKSPACE
 
-    - name: Get Previous tag
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
-      with:
-        fallback: 1.0.0.0
+    - name: test files
+      run: dir
 
-    - name: Upload Release
-      uses: "marvinpinto/action-automatic-releases@latest"
-      with:
-       repo_token: "${{ secrets.GITHUB_TOKEN }}"
-       automatic_release_tag: "${{ steps.previoustag.outputs.tag }}"
-       prerelease: false
-       title: "Development Build"
-       files: |
-        ./dist/*.zip
-        ./dist/*.exe
+    # - name: Get Previous tag
+    #   id: previoustag
+    #   uses: "WyriHaximus/github-action-get-previous-tag@v1"
+    #   with:
+    #     fallback: 1.0.0.0
+
+    # - name: Upload Release
+    #   uses: "marvinpinto/action-automatic-releases@latest"
+    #   with:
+    #    repo_token: "${{ secrets.GITHUB_TOKEN }}"
+    #    automatic_release_tag: "${{ steps.previoustag.outputs.tag }}"
+    #    prerelease: false
+    #    title: "Development Build"
+    #    files: |
+    #     ./dist/*.zip
+    #     ./dist/*.exe
