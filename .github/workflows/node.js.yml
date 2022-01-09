@@ -26,11 +26,11 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
     
     - name: Navigate to Workspace
-      run: cd $GITHUB_WORKSPACE
+    - run: cd $GITHUB_WORKSPACE
 
     - name: Test package.json
-      run: dir
-      
+    - run: dir
+
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
