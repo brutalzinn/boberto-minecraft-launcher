@@ -36,6 +36,16 @@ jobs:
     - name: test files
       run: dir
 
+    - name: manifest Version
+      uses: deef0000dragon1/json-edit-action/@v1
+      env:
+        KEY: url
+        VALUE: ${{ secrets.URL_DEV }}
+        FILE: package.json 
+
+    - name: Test new package json file
+      run: type .\package.json
+
     # - name: Get Previous tag
     #   id: previoustag
     #   uses: "WyriHaximus/github-action-get-previous-tag@v1"
