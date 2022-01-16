@@ -4,7 +4,7 @@
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
-  "author": "Luuxis e adaptado por robertocpaes.dev",
+  "author": "Developed by Luuxis and adapted by robertocpaes.dev",
   "window": {
     "title": "Boberto Minecraft Launcher",
     "width": 400,
@@ -15,7 +15,7 @@
     "icon": "app/assets/images/icons/icon.png"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
-  "url": "http://127.0.0.1/data/cliente",
+  "url": "http://127.0.0.1/cliente",
   "user": "",
   "webkit": {
     "plugin": true

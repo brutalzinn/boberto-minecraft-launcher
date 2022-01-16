@@ -48,7 +48,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         }
        
         let opts = {
-            url: url,
+            url,
             authorization: authenticator,
             path: modpack_dir,
             version: modpack.game_version,

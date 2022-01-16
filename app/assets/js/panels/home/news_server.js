@@ -29,7 +29,7 @@ let news_var = config.news().then(config => {
             <img class="newsImage" src="${newsImage}">
           </div>
         </div>
-        <div class="newsAuthor">Par ${newsAuthor}, le ${newsDate}</div>`
+        <div class="newsAuthor">Por ${newsAuthor}, de ${newsDate}</div>`
       }
     }
   }
