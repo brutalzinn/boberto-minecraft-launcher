@@ -29,6 +29,11 @@
     border-radius: 20px;
 }
 
+.news_button {
+    color: white;
+    cursor: pointer;
+}
+
 .texenewsbody {
     margin: 2%;
 }
