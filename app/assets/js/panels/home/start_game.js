@@ -54,7 +54,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
             version: modpack.game_version,
             detached: true,
             java: config.java,
-            custom: modpack.forge_version !== "",
+            custom: modpack.forge_version !== "" || modpack.fabric_version !== "",
             verify: config.verify,
             ignored: config.ignored,
             memory: {
