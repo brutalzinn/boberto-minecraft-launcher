@@ -35,6 +35,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
             var url = config.game_url
         }
         console.log("url",url)
+
         if(auth.user == undefined){
             if(config_launcher.Login.UserConnect == "Microsoft"){
                 var authenticator = msmc.getMCLC().getAuth(config_launcher.Login.Account.Microsoft.User)
@@ -48,7 +49,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         }
        
         let opts = {
-            url,
+            url: url,
             authorization: authenticator,
             path: modpack_dir,
             version: modpack.game_version,
@@ -73,7 +74,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         }else{
             launcher.launch(opts)
         }
-      
+        
         
         launcher.on('progress', (DL, totDL) => {
             document.querySelector(".progress-bar").style.display = "block"
