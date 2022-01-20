@@ -28,7 +28,7 @@ if(process.platform == "win32") {
   document.querySelector("#close").addEventListener("click", () => {
     win.close();
   })
-  document.querySelector(".title_bar_launcher").innerHTML = `${pkg.window.title}-${pkg.version}`  
+  document.querySelector(".titlebar-launcher-frame").innerHTML = `${pkg.window.title}-${pkg.version}`  
 
 }
 

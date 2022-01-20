@@ -20,20 +20,18 @@ body {
 	background-color: #666;
 }
 .dragbar {
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, 0.5);
     top: 0px;
     left: 0px;
     width: 100%;
     height: 26px;
     -webkit-app-region: drag;
-    z-index: 9;
+    z-index: 10;
     display: none;
 }
 
-.title_bar_launcher{
-    color:white;
-}
+
 .frame {
     background: transparent;
     position: fixed;
@@ -48,7 +46,9 @@ body {
 .hide {
     display: block;
 }
-
+.titlebar-launcher-frame{
+    color:white;
+}
 .button-frame {
     position: relative;
     display: table-cell;
