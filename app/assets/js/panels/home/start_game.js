@@ -1,7 +1,6 @@
 const {launch} = require('minecraft-java-core');
-const fs = require('fs');
 const launcher = new launch();
-const msmc = require("msmc");
+const fs = require('fs');
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
@@ -36,14 +35,8 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         }
         console.log("url",url)
 
-        if(auth.user == undefined){
-            if(config_launcher.Login.UserConnect == "Microsoft"){
-                var authenticator = msmc.getMCLC().getAuth(config_launcher.Login.Account.Microsoft.User)
-            } else if(config_launcher.Login.UserConnect == "Mojang"){
-                var authenticator = config_launcher.Login.Account.Mojang.User
-            } else if(config_launcher.Login.UserConnect == "Crack") {
-                var authenticator = config_launcher.Login.Account.Crack.User 
-            }
+        if(!auth.user){
+            var authenticator = config_launcher.Login[config_launcher.select]       
         } else {
             var authenticator = auth.user
         }
