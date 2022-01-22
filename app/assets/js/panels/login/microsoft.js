@@ -15,8 +15,9 @@ document.querySelector(".microsoft-btn").addEventListener("click", () => {
         auth.loginMicrosoft(res.client_id).then(user => {
             if(document.querySelector(".loginRemember").checked == true){
                 const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
-                file.Login.UserConnect = "Microsoft"
-                file.Login.Account = {"Microsoft":{"User": user}} 
+                file.select = `${user.uuid}`
+                file.Login[user.uuid] = user
+                file.Mode = 1
                 fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
             }
             document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${user.profile.name}/100`

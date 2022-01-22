@@ -75,7 +75,7 @@
     "nwjs-builder-luuxis": "^1.15.0"
   },
   "dependencies": {
-    "minecraft-java-core": "^1.1.7",
+    "minecraft-java-core": "github:brutalzinn/minecraft-java-core",
     "nw-autoupdater-luuxis": "^1.1.6"
   }
 }

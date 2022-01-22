@@ -49,8 +49,8 @@ let modPackSelector = document.querySelector(".select-modpacks")
  
 
 let modpack_var = config.modpacks().then( modpack => {
- let nonpremiumuser =  config.config_cache.Login.Mode == 0
- let premiumuser =  config.config_cache.Login.Mode == 1
+ let nonpremiumuser =  config.config_cache.Mode == 0
+ let premiumuser =  config.config_cache.Mode == 1
 
   if(modpack.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`

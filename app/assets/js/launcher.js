@@ -1,11 +1,10 @@
 const fs = require("fs");
-const msmc = require("msmc");
+const { mojang, microsoft } = require('minecraft-java-core');
 const pkg = require("../package.json");
-const { mojang } = require('minecraft-java-core');
+const Microsoft = new microsoft()
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
-const { config } = require('./assets/js/utils.js');
+const { config, auth } = require('./assets/js/utils.js');
 let win = nw.Window.get()
-
 
 if(process.platform == "win32") {
   document.querySelector(".frame").classList.toggle("hide")
@@ -58,53 +57,43 @@ function changePanel(V1, V2){
     panelsElem.appendChild(div);
     import (`./panels/${panel}.js`)
   }
-})('settings','login', 'home')
+})('login', 'home', 'settings')
 
 
-
-config.config().then(res => {
-  if(fs.existsSync(dataDirectory + "/" + res.dataDirectory + "/config.json")) {
-    let rawData = fs.readFileSync(dataDirectory + "/" + res.dataDirectory + "/config.json")
- 
-
-    let json = JSON.parse(rawData);
-    config.config_cache = json
-    if ((json.Login.UserConnect) === null){
+config.config().then(async (res) => {
+  let path = `${dataDirectory}/${res.dataDirectory}/config.json`
+  if(fs.existsSync(path)) {
+    let file = require(path)
+    config.config_cache = file
+    let getuser = auth.getUser(file.Login)
+    
+    if(getuser === null){
       changePanel("", "login")
-
-    } else if(json.Login.UserConnect == "Mojang") {
-      if (!json.Login.Account || !json.Login.Account.Mojang || !json.Login.Account.Mojang.User || !json.Login.Account.Mojang.User.access_token || !json.Login.Account.Mojang.User.client_token) changePanel("", "login")
-      mojang.validate(json.Login.Account.Mojang.User.access_token, json.Login.Account.Mojang.User.client_token).then(user => {
-        document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${json.Login.Account.Mojang.User.name}/100`
-        changePanel("", "home")
-      }).catch (err => {
+    } else {
+      for(let user of getuser){
+        if(user.meta.type === "msa") {
+          await Microsoft.refresh(user).then(msa => file.Login[msa.uuid] = msa).catch(error => {
+            delete file.Login[user.uuid]
+            changePanel("", "login")
+          })
+        } else if(user.meta.type === "mojang") {
+          if(user.meta.offline) continue
+          await auth.refreshAuth(user).then(mojang => file.Login[mojang.uuid] = mojang).catch(error => {
+            delete file.Login[user.uuid]
+            changePanel("", "login")
+          })
+        }
+      }
+      fs.writeFileSync(path, JSON.stringify(file, true, 4))
+      if(!file.Login[file.select] || file.Login[file.select] === "") {
         changePanel("", "login")
-      })
-
-    } else if (json.Login.UserConnect == "Crack") {
-      if (!json.Login.Account || !json.Login.Account.Crack || !json.Login.Account.Crack.User || !json.Login.Account.Crack.User.name) changePanel("", "login")
-      mojang.getAuth(json.Login.Account.Crack.User.name).then(user => {
-        document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${json.Login.Account.Crack.User.name}/100`
-        changePanel("", "home")
-      }).catch (err => {
-        changePanel("", "login")
-      })
-
-    } else if (json.Login.UserConnect == "Microsoft") {
-      if (!json.Login.Account || !json.Login.Account.Microsoft || !json.Login.Account.Microsoft.User) changePanel("", "login")
-      msmc.getMCLC().validate(json.Login.Account.Microsoft.User).then(user => {
-        msmc.refresh(json.Login.Account.Microsoft.User.profile).then(user => {
-          json.Login.UserConnect = "Microsoft"
-          json.Login.Account = {"Microsoft":{"User": user}} 
-          fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(json, true, 4), 'UTF-8')
-          document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${user.profile.name}/100`
-          changePanel("", "home")
-        })
-      }).catch (err => {
-        changePanel("", "login")
-      })
+      } else {
+        document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${file.Login[file.select].name}/100`
+        changePanel("login", "home")
+      }
     }
   } else {
     changePanel("", "login")
   }
+  //document.querySelector(".start-loader").style.display = "none"
 })

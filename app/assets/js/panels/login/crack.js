@@ -34,9 +34,9 @@ document.querySelector(".login-btn").addEventListener("click", () => {
         config.config().then(res => {
             if(document.querySelector(".loginRemember").checked == true){
                 const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
-                file.Login.Mode = 0
-                file.Login.UserConnect = "Crack"
-                file.Login.Account = {"Crack":{"User": user}} 
+                file.Mode = 0
+                file.select = `${user.uuid}`
+                file.Login[user.uuid] = user
                 fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
             }
         })
@@ -52,12 +52,9 @@ document.querySelector(".login-btn").addEventListener("click", () => {
 })
 document.querySelector(".loginSpanPremium").addEventListener("click", () => {
     config.config().then(res => {
-    const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
-    file.Login.Mode = 1
-    file.Login.UserConnect = null
-    file.Login.Account = null
+    file.Login = {}
+    file.Mode = 1
     location.href = './launcher.html';
-
     })
 })
 
