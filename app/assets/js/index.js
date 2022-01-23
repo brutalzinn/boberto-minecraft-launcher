@@ -1,4 +1,3 @@
-const nodemon = require("nodemon");
 const AutoUpdater = require("nw-autoupdater-luuxis");
 const pkg = require("../package.json");
 if((pkg.user) === undefined || (pkg.user) === ""){

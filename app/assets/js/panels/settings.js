@@ -21,7 +21,8 @@ config.config().then(res => {
             "Launcher": {
                 "NewsAutoRefresh": false,
                 "StatusServerAutoRefresh": false,
-                "CloseLauncher": true
+                "CloseLauncher": true,
+                "Language":"en"
             },
             "Settings": {
                 "Java": {
@@ -34,10 +35,13 @@ config.config().then(res => {
                     "height": "720"
                 }
             },
+            "Mode":0,
             "Login": {}
         }
         if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`)){
             fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
+            fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true })
+
         }
         fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(DEFAULT_CONFIG, true, 4), 'UTF-8')
         config.config_cache = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
