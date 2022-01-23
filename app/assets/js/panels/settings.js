@@ -1,13 +1,13 @@
-const { config } = require('./assets/js/utils.js');
+const { config,en,pt,fr } = require('./assets/js/utils.js');
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const os = require("os")
 let DEFAULT_CONFIG
-
 const totalMem = Math.trunc(os.totalmem() / 1048576 * 10) / 10;
 const freeMem = Math.trunc(os.freemem() / 1048576 * 10) / 10;
 
-let RamMin
 
+
+let RamMin
 if ((freeMem / 3).toFixed(0)) {
     RamMin = "512"
 } else {
@@ -16,6 +16,19 @@ if ((freeMem / 3).toFixed(0)) {
 
 
 config.config().then(res => {
+
+    if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`))
+    {
+        fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
+        //create default language packages
+        fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true })
+        fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/language/en.json`, JSON.stringify(en.DEFAULT_CONFIG, true, 4), 'UTF-8')
+        fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/language/pt.json`, JSON.stringify(pt.DEFAULT_CONFIG, true, 4), 'UTF-8')
+        fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/language/fr.json`, JSON.stringify(fr.DEFAULT_CONFIG, true, 4), 'UTF-8')
+    }
+
+
+
     if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}/config.json`)){
         DEFAULT_CONFIG = {
             "Launcher": {
@@ -38,16 +51,12 @@ config.config().then(res => {
             "Mode":0,
             "Login": {}
         }
-        if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`)){
-            fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
-            fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true })
-
-        }
+  
         fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(DEFAULT_CONFIG, true, 4), 'UTF-8')
-        config.config_cache = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
 
     }
-    
+    config.config_cache = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
+
     import ("./settings/account.js")
     import ("./settings/java-directory.js")
     import ("./settings/resolution.js")

@@ -1,4 +1,4 @@
-{
+module.exports.DEFAULT_CONFIG = {
     "name":"Português brasileiro",
     "play_button_text":"Jogar",
     "force_update_checkbox_text":"Forçar atualização",
