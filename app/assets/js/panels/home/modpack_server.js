@@ -73,38 +73,9 @@ let modpack_var = config.modpacks().then( modpack => {
       }
     }
     modPackSelector.value = config.modpack_selected.id
-    console.log(config.modpack_selected)
+   // console.log(config.modpack_selected)
     modPackInfo()
 
-
-
-
-
-
-
-
-
-
-
-      // if (modpackImage === "") {
-      //   modpackForm.innerHTML += 
-      //   `<div class="modpackBody">
-      //   <div class="modpackName">${modpackName}</div>
-      //     <div class="texemodpackDirectory">${modpackDirectory}</div>
-      //   </div>
-      //   <div class="modpackAuthor">Por ${modpackAuthor}, de ${modpackGameVersion}</div>`
-      // } else {
-      //    modpackForm.innerHTML += 
-      //    ` <div class="modpackBody">
-      //    <div class="modpackName">${modpackName}</div>
-      //     <div class="texemodpackDirectory">${modpackDirectory}
-      //       <img class="modpackImage" src="${modpackImage}">
-      //     </div>
-      //   </div>
-      //   <div class="modpackAuthor">Par ${modpackAuthor}, le ${modpackGameVersion}</div>`
-      // }
-    
-  
   }
  NewsAutoRefresh()
 })

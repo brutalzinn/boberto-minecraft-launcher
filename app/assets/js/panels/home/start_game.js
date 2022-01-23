@@ -4,7 +4,7 @@ const fs = require('fs');
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
-const { auth, config, checkmodsfolder } = require('./assets/js/utils.js');
+const { auth, config, checkmodsfolder, tradutor } = require('./assets/js/utils.js');
 
 
 
@@ -14,7 +14,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
     document.querySelector(".play-btn").style.display = "none"
     document.querySelector(".info-download").style.display = "block"
     config.config().then(config => {
-    let modpack_dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
+    let modpcak_dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
         try {

@@ -10,6 +10,7 @@ module.exports = {
      en: require('./language/en.js'),
      pt: require('./language/pt.js'),
      fr: require('./language/fr.js'),
+     tradutor: require('./utils/language')
 }
 
 

@@ -1,0 +1,17 @@
+.language-list {
+    position: absolute;
+    background: #222222;
+    border-radius: 20px;
+    text-align: center;
+    width: 55%;
+    color: white;
+    margin-top: 1%;
+    margin-left: 4%;
+}
+.select-language {
+    width: 50%;
+}
+
+.language-info {
+    color: azure;
+}
