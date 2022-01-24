@@ -25,7 +25,8 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
             document.querySelector(".info-download").innerHTML = `Ocorreu um erro ao forçar a atualização.`
         }
         document.querySelector(".info-download").style.display = "block"
-    }
+        }
+
         const config_launcher = require(dataDirectory + "/" + config.dataDirectory + "/config.json")
 
         if(config.game_url === "" || config.game_url === undefined || config.game_url === null) {
