@@ -62,6 +62,7 @@ function changePanel(V1, V2){
 
 config.config().then(async (res) => {
   let path = `${dataDirectory}/${res.dataDirectory}/config.json`
+  
   if(fs.existsSync(path)) {
     let file = require(path)
     config.config_cache = file

@@ -4,13 +4,13 @@ const util = require('util');
 const crypto = require('crypto');
 
 module.exports = {
+    languages: require("./utils/language.js"),
     config: require("./utils/config.js"),
     auth: require("./utils/auth.js"),
     Slider: require("./utils/slider.js"),
-     en: require('./language/en.js'),
-     pt: require('./language/pt.js'),
-     fr: require('./language/fr.js'),
-     tradutor: require('./utils/language')
+     en: require("./language/en.js"),
+     pt: require("./language/pt.js"),
+     fr: require("./language/fr.js")
 }
 
 

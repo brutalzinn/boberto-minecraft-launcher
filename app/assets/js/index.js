@@ -23,7 +23,6 @@ win.on('resize', (width, height) => {
   win.resizeTo(400, 500);
 });
 async function startAnimation(){
- 
   await sleep(100);
   document.querySelector("#splash").style.display = "block";
   await sleep(500);

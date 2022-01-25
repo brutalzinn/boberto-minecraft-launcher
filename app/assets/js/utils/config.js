@@ -12,7 +12,7 @@ const modpacks = url + "/launcher/config-launcher/modpacks.json";
 var settings_cache = null
 
 module.exports.config_path = null
-
+module.exports.launcherdir = null
 module.exports.modpack_selected = {}
 module.exports.modpack_cache = {}
 module.exports.config_cache = {}
@@ -28,7 +28,6 @@ function ReadSettings(){
     }
 
     getData().then(res => {
-        console.log(res)
         const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`)
         settings_cache = file
         return file

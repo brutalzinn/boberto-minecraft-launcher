@@ -10,17 +10,10 @@ config.config().then(res => {
 
   const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
 
-  let languageSelector = document.querySelector(".select-language")
-  document.querySelector(".select-language").addEventListener('change', function() {
-//   if(config.modpack_cache.length === 0){
-//     return
-//   }
-//   config.modpack_selected = config.modpack_cache.find(e => e.id == this.value)
-//   console.log(config.modpack_selected )
+let languageSelector = document.querySelector(".select-language")
 
-//   if(config.modpack_selected != null){
-//     modPackInfo()
-//   }
+document.querySelector(".select-language").addEventListener('change', function() {
+
 file.Launcher.Language = this.value
 fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
 
@@ -30,13 +23,11 @@ fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.strin
 
 
 const languages = `${dataDirectory}/${res.dataDirectory}/language`
+
 var files = glob.sync(`${languages}/*.json`);
 
-files = files.map((item)=> path.basename(item))
+    files = files.map((item)=> path.basename(item))
 
-  
- 
-  
     if(files.length === 0)
     {
         languageSelector.innerHTML += `<option value="-1">No any languages are found</option>`
@@ -51,7 +42,7 @@ files = files.map((item)=> path.basename(item))
     }
     //  else 
     // {
-
+        languageSelector.value = file.Launcher.Language
   
 
     // }
