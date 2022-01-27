@@ -5,6 +5,8 @@ const Microsoft = new microsoft()
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const { config, auth } = require('./assets/js/utils.js');
 let win = nw.Window.get()
+const event = document.createEvent('Event');
+event.initEvent('change_panel', true, true);
 
 if(process.platform == "win32") {
   document.querySelector(".frame").classList.toggle("hide")
@@ -44,7 +46,9 @@ function changePanel(V1, V2){
   } else {
     document.querySelector(`.${V1}`).style.display = "none"
     document.querySelector(`.${V2}`).style.display = "block"
+
   }
+  document.dispatchEvent(event)
 }
 
 (function(...panels){
@@ -93,8 +97,10 @@ config.config().then(async (res) => {
         changePanel("login", "home")
       }
     }
+  
   } else {
     changePanel("", "login")
   }
+  
   //document.querySelector(".start-loader").style.display = "none"
 })

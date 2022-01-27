@@ -8,14 +8,15 @@ const path = require('path');
 
 config.config().then(res => {
 
-  const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
 
 let languageSelector = document.querySelector(".select-language")
 
-document.querySelector(".select-language").addEventListener('change', function() {
-
+document.querySelector(".select-language").addEventListener('change', async function() {
 file.Launcher.Language = this.value
 fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+
+
 
 });
 
@@ -40,17 +41,9 @@ var files = glob.sync(`${languages}/*.json`);
             languageSelector.innerHTML += `<option value="${files[i].split('.')[0]}">${lang.name}</option>`
         }
     }
-    //  else 
-    // {
         languageSelector.value = file.Launcher.Language
   
 
-    // }
-
-  
-    // use listNodes normally
-  
- 
 
 
 

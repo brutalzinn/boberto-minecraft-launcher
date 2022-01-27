@@ -4,15 +4,25 @@ const fs = require('fs');
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
-const { auth, config, checkmodsfolder, tradutor } = require('./assets/js/utils.js');
+const { auth, config, checkmodsfolder,language_service } = require('./assets/js/utils.js');
+win.on('loaded', () => { loadTranslation() });
+document.addEventListener('change_panel', () => loadTranslation())
 
-
-
+function loadTranslation(){
+console.log('loading translators...')
+config.config().then(res=>{
+    document.querySelector(".play-btn").innerHTML = language_service.Tradutor('play_button_text', res.dataDirectory)
+    document.querySelector(".force-update").innerHTML = language_service.Tradutor('force_update_checkbox_text', res.dataDirectory)
+    document.querySelector(".player-connect-head-text").innerHTML = language_service.Tradutor('server_list.server_list_status_title_text', res.dataDirectory)
+    console.log('loaded new language system')
+})
+}
 
 document.querySelector(".play-btn").addEventListener("click", async () => {
     var modpack = config.modpack_selected
     document.querySelector(".play-btn").style.display = "none"
     document.querySelector(".info-download").style.display = "block"
+    
     config.config().then(config => {
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`

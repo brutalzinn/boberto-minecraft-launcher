@@ -4,7 +4,7 @@ const util = require('util');
 const crypto = require('crypto');
 
 module.exports = {
-    languages: require("./utils/language.js"),
+    language_service: require("./utils/language.js"),
     config: require("./utils/config.js"),
     auth: require("./utils/auth.js"),
     Slider: require("./utils/slider.js"),
