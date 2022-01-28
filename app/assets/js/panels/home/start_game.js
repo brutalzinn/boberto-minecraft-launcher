@@ -14,6 +14,9 @@ config.config().then(res=>{
     document.querySelector(".play-btn").innerHTML = language_service.Tradutor('play_button_text', res.dataDirectory)
     document.querySelector(".force-update").innerHTML = language_service.Tradutor('force_update_checkbox_text', res.dataDirectory)
     document.querySelector(".player-connect-head-text").innerHTML = language_service.Tradutor('server_list.server_list_status_title_text', res.dataDirectory)
+    document.querySelector(".news-text").innerHTML = language_service.Tradutor('news.news_title_text', res.dataDirectory)
+    document.querySelector(".news-next").innerHTML = language_service.Tradutor('news.news_next_button_text', res.dataDirectory)
+    document.querySelector(".news-before").innerHTML = language_service.Tradutor('news.news_back_button_text', res.dataDirectory)
     console.log('loaded new language system')
 })
 }

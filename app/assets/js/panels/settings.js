@@ -1,4 +1,4 @@
-const { config,en,pt,fr } = require('./assets/js/utils.js');
+const { config,en,pt,fr, language_service } = require('./assets/js/utils.js');
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const os = require("os")
 let DEFAULT_CONFIG
@@ -13,10 +13,10 @@ if ((freeMem / 3).toFixed(0)) {
 } else {
     RamMin = `${(freeMem / 3).toFixed(0)}`
 }
-
+var launcher_dir = ''
 
 config.config().then(res => {
-
+    launcher_dir = res.dataDirectory
     if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`))
     {
         fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
@@ -61,8 +61,21 @@ config.config().then(res => {
     import ("./settings/java-directory.js")
     import ("./settings/resolution.js")
     import ("./settings/settings-launcher.js")
-})
+    document.addEventListener('change_panel', () => {
+        document.querySelector(".accountsettings").innerHTML = language_service.Tradutor('settings.settings_account_menu_title', res.dataDirectory)
+        document.querySelector(".ramsettings").innerHTML = language_service.Tradutor('settings.settings_ram_menu_title', res.dataDirectory)
+        document.querySelector(".javasettings").innerHTML = language_service.Tradutor('settings.settings_java_menu_title', res.dataDirectory)
+        //resolution
+        document.querySelector(".resolutionsettings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.title', res.dataDirectory)
+    // launcher settings
+        document.querySelector(".launchersettings").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.title', res.dataDirectory)
+        //save button
+        document.querySelector(".settingsSave").innerHTML = language_service.Tradutor('settings.settings_save_menu_title', res.dataDirectory)
 
+    })
+  
+
+})
 
 
 
@@ -80,11 +93,20 @@ document.querySelector(".javasettings").addEventListener("click", () => {
 })
 
 document.querySelector(".resolutionsettings").addEventListener("click", () => {
+    //sub resolution
     tab('resolutionsettingstab')
+    document.querySelector(".text-settings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.description', launcher_dir)
 })
 
 document.querySelector(".launchersettings").addEventListener("click", () => {
+    //sub launcher items
+
     tab('launchersettingstab')
+    document.querySelector(".select-label-language").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_language_label', launcher_dir)
+    document.querySelector(".checkbox-refresh-news").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_news_refresh', launcher_dir)
+    document.querySelector(".checkbox-refresh-server-status").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_server_refresh', launcher_dir)
+    document.querySelector(".checkbox-launcher-open").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_launcher_settings', launcher_dir)
+
 })
 
 function tab(info) {
