@@ -13,10 +13,9 @@ if ((freeMem / 3).toFixed(0)) {
 } else {
     RamMin = `${(freeMem / 3).toFixed(0)}`
 }
-var launcher_dir = ''
 
 config.config().then(res => {
-    launcher_dir = res.dataDirectory
+    config.launcher_dir = res.dataDirectory
     if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`))
     {
         fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })

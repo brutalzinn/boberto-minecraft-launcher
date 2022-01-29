@@ -2,16 +2,18 @@
 const config = require('./config')
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const Tradutor = (chave, launcherdir) => {
-    let languages = `${dataDirectory}/${launcherdir}/language`
-    let file = require(`${dataDirectory}/${launcherdir}/config.json`);
+
+
+const Tradutor = (chave) => {
+    let languages = `${dataDirectory}/${config.launcher_dir}/language`
+    let file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
     let lang = require(`${languages}/${file.Launcher.Language}.json`)
      return  chave.split('.').reduce((o,i)=>o[i], lang);
 }
 
-const TradutorVars = (input, variables, launcherdir) => {
-    var languages = `${dataDirectory}/${launcherdir}/language`
-    let file = require(`${dataDirectory}/${launcherdir}/config.json`);
+const TradutorVars = (input, variables) => {
+    var languages = `${dataDirectory}/${config.launcher_dir}/language`
+    let file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
     let lang = require(`${languages}/${file.Launcher.Language}.json`)
 
     var traduzido =  input.split('.').reduce((o,i)=>o[i], lang);

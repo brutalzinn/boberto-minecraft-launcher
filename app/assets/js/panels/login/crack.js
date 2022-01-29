@@ -1,4 +1,4 @@
-const { auth, config } = require('./assets/js/utils.js');
+const { auth, config, language_service } = require('./assets/js/utils.js');
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 document.querySelector(`.online`).style.display = "none"
@@ -6,8 +6,11 @@ document.querySelector(`.microsoft-btn`).style.display = "none"
 document.querySelector(`.loginSpanDim`).style.display = "none"
 document.querySelector(`.loginSpanNoAuth`).style.display = "none"
 
-document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = "Insira seu nome de jogador para jogar no mundo bobertástico. </br> Esse launcher se destina a uso exclusivo dos meus amigos. </br>E não deve ser compartilhado com terceiros."
+document.querySelector(`.uzurionAppLoginCardInformation`).innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_language_label') //"Insira seu nome de jogador para jogar no mundo bobertástico. </br> Esse launcher se destina a uso exclusivo dos meus amigos. </br>E não deve ser compartilhado com terceiros."
 document.querySelector(`.uzurionAppLoginCardLabel`).innerHTML = "nome do usuário"
+
+
+
 document.querySelector(".uzurionAppGenHeader").style.display = "block"
 
 document.querySelector(".login-btn").addEventListener("click", () => {
