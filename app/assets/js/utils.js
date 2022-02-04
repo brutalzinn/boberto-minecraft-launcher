@@ -28,6 +28,11 @@ async function checkSHA1(file, hash){
 
 
 module.exports.checkmodsfolder = async function (url,modpack_dir){
+    let mod_dir = `${modpack_dir}/mods`
+    if(!fs.existsSync(mod_dir)){
+     console.log(`${modpack_dir} not found`)
+      return
+    }
      let data = await fetch(url).then(res => res.json());
      var mods_server = []
      var mods_delete = []
@@ -42,12 +47,12 @@ module.exports.checkmodsfolder = async function (url,modpack_dir){
          })
      });
          const readdir = util.promisify(fs.readdir);
-         let mods_dirs = await readdir(`${modpack_dir}/mods`)
+         let mods_dirs = await readdir(mod_dir)
          for (let filename of mods_dirs) {
              let mod_path = `mods/${filename}`
              let mod =  mods_server.find(v=> v.path == mod_path)
             if(mod == undefined || mod != undefined && !await checkSHA1(path.resolve(`${modpack_dir}/${mod.path}`).replace(/\\/g, "/"),mod.sha1)){
-             mods_delete.push(path.resolve(`${modpack_dir}/mods/${filename}`).replace(/\\/g, "/"))          
+             mods_delete.push(path.resolve(`${mod_dir}/${filename}`).replace(/\\/g, "/"))          
              }
          }
         

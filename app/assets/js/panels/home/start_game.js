@@ -27,6 +27,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
     document.querySelector(".info-download").style.display = "block"
     
     config.config().then(config => {
+    let modpack_dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
         try {
