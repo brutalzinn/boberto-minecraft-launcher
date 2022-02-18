@@ -1,11 +1,11 @@
 module.exports.DEFAULT_CONFIG = {
     "name":"Português brasileiro",
-    "play_button_text": "Jogar",
-    "force_update_checkbox_text": "Atualização de força",
+    "play_button_text":"Jogar",
+    "force_update_checkbox_text":"Forçar atualização",
     "modpack": {
-        "modpack_title_text": "Modpacks disponíveis",
-        "modpack_version_text": "Versão",
-        "modpack_author_text": "Autor"
+        "modpack_title_text":"Modpacks disponíveis",
+        "modpack_version_text":"Versão",
+        "modpack_author_text":"Autor"
     },
     "news": {
         "news_title_text": "Notícias",
@@ -13,10 +13,14 @@ module.exports.DEFAULT_CONFIG = {
         "news_back_button_text": "Anterior"
     },
     "server_list": {
-        "server_list_status_title_text": "Status dos servidores",
-        "server_list_status_name_text": "Servidor",
-        "server_list_status_ping_text": "Ping",
-        "server_list_status_players_text": "Jogadores %0"
+        "status_title_text":"Status dos servidores",
+        "status_server_empty_title":"Nenhum jogador conectado",
+        "status_server_offline_title":"Servidor Indisponível",
+        "status_server_one_player_connected_title":"0 jogador conectado atualmente",
+        "status_server_multiple_player_connected_title":"0 jogadores conectados atualmente",
+        "status_name_text": "Servidor",
+        "status_ping_text": "Ping",
+        "status_players_text": "0 1"
     },
     "authentication":{
         "login_remember_text":"Lembrar",

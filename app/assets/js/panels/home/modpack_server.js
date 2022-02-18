@@ -1,4 +1,4 @@
-const { config } = require('./assets/js/utils.js');
+const { config, language_service } = require('./assets/js/utils.js');
 const { status } = require('minecraft-java-core');
 
 let modPackSelector = document.querySelector(".select-modpacks")
@@ -9,29 +9,25 @@ let modPackSelector = document.querySelector(".select-modpacks")
 
   if (modpack_selected.img === "") {
 
-    modpackInfoHtml.innerHTML = 
-      `<div class="modpackBody">
+    modpackInfoHtml.innerHTML = `<div class="modpackBody">
       <div class="modpackName">${modpack_selected.name}</div>
       <div class="texemodpackDirectory">${modpack_selected.description}</div>
-      <div class="class-status">Status: Carregando...</div>
-      <div class="Version">Versão: ${modpack_selected.game_version} </div>
+      <div class="Status">Carregando...</div>
+      <div class="Version">Versão:${modpack_selected.game_version} </div>
       <div class="Author">Autor: ${modpack_selected.author}</div>
-      </div>
-      `
+      </div>`
     } else {
-      modpackInfoHtml.innerHTML = 
-        ` <div class="modpackBody" style="background-image: url(${modpack_selected.img})">
-        <div class="modpackName">${modpack_selected.name}</div>
-        <div class="texemodpackDirectory">${modpack_selected.description}</div>
-        <div class="class-status">Status: Carregando...</div>
+      modpackInfoHtml.innerHTML = `<div class="modpackBody" style="background-image: url(${modpack_selected.img})">
+      <div class="modpackName">${modpack_selected.name}</div>
+      <div class="texemodpackDirectory">${modpack_selected.description}</div>
+      <div class="Status">Carregando...</div>
       <div class="Version">Versão: ${modpack_selected.game_version} </div>
       <div class="Author">Autor: ${modpack_selected.author}</div>
-      </div>
-     `
+      </div>`
     }
     status.StatusServer( modpack_selected.server_ip, parseInt( modpack_selected.server_port)).then((result)=>
     {
-      document.querySelector(".class-status").innerHTML = `<div class="class-status">Status: ${result ? "Online" : "Offline"}</div>`
+      document.querySelector(".Status").innerHTML = `Status: ${result ? "Online" : "Offline"}`
     })
 }
   document.querySelector(".select-modpacks").addEventListener('change', function() {
@@ -69,8 +65,8 @@ let modpack_var = config.modpacks().then( modpack => {
         modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
       }else if(!modpack[i].premium && nonpremiumuser){
         modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpackName}</option>`
-
       }
+
     }
     modPackSelector.value = config.modpack_selected.id
    // console.log(config.modpack_selected)
@@ -90,6 +86,3 @@ function NewsAutoRefresh(){
     }
   })
 }
-
-
-

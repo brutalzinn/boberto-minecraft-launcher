@@ -1,33 +1,55 @@
-const { config } = require('./assets/js/utils.js');
+const { config, language_service } = require('./assets/js/utils.js');
 const { status } = require('minecraft-java-core');
 
-config.info().then(async (config)  => {
-    let StatusServer = await status.StatusServer(config.ip_server, parseInt(config.port_server))
-    
-    if(!StatusServer){
-     //   document.querySelector(".player-connect-number").innerHTML = "O servidor está fechado no momento.";
-        document.querySelector(".player-connect").innerHTML = "O servidor está fechado no momento.";
-    } else {
-        let status_json = StatusServer.raw.vanilla
-        document.querySelector(".player-connect").innerHTML = ""
-        if(status_json.raw.players.online === 0){
-            // document.querySelector(".player-connect-number").innerHTML = `Nenhum jogador conectado`;
-            document.querySelector(".player-connect").innerHTML = `Nenhum jogador conectado`;
-        } else if (status_json.raw.players.online === 1){
-            document.querySelector(".player-connect-number").innerHTML = `${status_json.raw.players.online} jogador conectado atualmente`;
-            head(status_json)
-        } else {
-            document.querySelector(".player-connect-number").innerHTML = `${status_json.raw.players.online} jogadores atualmente logados`;
-            head(status_json)
+config.modpacks().then( async modpack => {
+    if(modpack.length === 0)
+    {
+        document.querySelector(".player-connect").innerHTML = `Nenhum modpack disponível`
+    } 
+     else 
+    {
+    for (let i = 0; i < modpack.length; i++) 
+    {
+        let StatusServer = (await status.StatusServer(modpack[i].server_ip, parseInt( modpack[i].server_port)))
+        let modpackName = modpack[i].name
+
+        if(!StatusServer){
+            document.querySelector(".player-connect").innerHTML += `<li>${language_service.Tradutor('server_list.status_server_offline_title')}</li>`;
         }
+        else
+        {
+            if(StatusServer.players.online === 0){
+                // document.querySelector(".player-connect").innerHTML = `Nenhum jogador conectado`;
+                document.querySelector(".player-connect").innerHTML += language_service.Tradutor('server_list.status_server_empty_title');
+            } else if (status_json.raw.players.online === 1){
+                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_one_player_connected_title",[StatusServer.players.online]);
+                head(StatusServer.players)      
+            } else {
+                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_multiple_player_connected_title",[StatusServer.players.online]);
+                head(StatusServer.players)      
+
+            }
+        }
+         
     }
+    }
+    StatusServerAutoRefresh()
 })
 
 
-function head(status_json) {
-    for (let i = 0; i < status_json.raw.players.sample.length; i++) { 
-        let player = status_json.raw.players.sample[i].name
-        document.querySelector(".player-connect").innerHTML += `<div><img class="users" src="https://mc-heads.net/head/${player}"><b class="users"> ${player}</b></div>`
+//function head(status_json) {
+//     for (let i = 0; i < status_json.raw.players.sample.length; i++) { 
+//         let player = status_json.raw.players.sample[i].name
+//         document.querySelector(".player-connect").innerHTML += `<div><img class="users" src="https://mc-heads.net/head/${player}"><b class="users"> ${player}</b></div>`
+//     }
+// }
+function head(StatusServer) {
+    if (!!StatusServer.sample) {
+        StatusServer.sample.forEach(element => {
+            document.querySelector(".player-connect").innerHTML += `<div><img class="users" src="https://mc-heads.net/head/${element.name}"><b class="users"> ${element.name}</b></div>`      
+        });
+    } else {
+        document.querySelector(".player-connect").innerHTML += `<div><b class="users">Indisponible...</b></div>`
     }
 }
 

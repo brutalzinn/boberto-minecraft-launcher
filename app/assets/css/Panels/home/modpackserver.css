@@ -39,6 +39,10 @@
 .modpackName {
     text-align: center;
 }
+.Status{
+    color: azure;
+    margin: 2%;
+}
 .modpackBody {
     color: azure;
     background: #3b3b3b;

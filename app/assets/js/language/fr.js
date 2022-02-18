@@ -13,11 +13,15 @@ module.exports.DEFAULT_CONFIG = {
       "news_back_button_text": "Précédent"
     },
     "server_list": {
-      "server_list_status_title_text": "Statut des serveurs",
-      "server_list_status_name_text": "Serveur",
-      "server_list_status_ping_text": "Ping",
-      "server_list_status_players_text": " %0les joueurs"
-    },
+      "status_title_text":"État du serveur",
+      "status_server_empty_title":"Aucun joueur connecté",
+      "status_server_offline_title":"Serveur indisponible",
+      "status_server_one_player_connected_title":"0 joueur actuellement connecté",
+      "status_server_multiple_player_connected_title":"0 joueurs actuellement connectés",
+      "status_name_text": "Servidor",
+      "status_ping_text": "Ping",
+      "status_players_text": "0 1"
+  },
     "authentication":{
       "login_remember_text": "Mémoriser",
       "crack": {
