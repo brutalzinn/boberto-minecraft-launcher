@@ -78,6 +78,16 @@
   margin-bottom: 4px;
 }
 
+.uzurionAppSenhaCardLabel {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #F2F2F2;
+  margin-bottom: 4px;
+}
+
+
 .uzurionAppLoginCardInput {
   font-weight: 700;
   font-family: 'Roboto', sans-serif;

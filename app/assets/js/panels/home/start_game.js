@@ -17,6 +17,9 @@ console.log('loading translators...')
     document.querySelector(".news-text").innerHTML = language_service.Tradutor('news.news_title_text')
     document.querySelector(".news-next").innerHTML = language_service.Tradutor('news.news_next_button_text')
     document.querySelector(".news-before").innerHTML = language_service.Tradutor('news.news_back_button_text')
+    document.querySelector(".player-connect").innerHTML = language_service.Tradutor('server_list.server_list_status_players_text')
+
+    
     console.log('loaded new language system')
 
 }

@@ -1,6 +1,6 @@
 module.exports.DEFAULT_CONFIG = {
     "name":"Português brasileiro",
-    "play_button_text": "Reproduzir",
+    "play_button_text": "Jogar",
     "force_update_checkbox_text": "Atualização de força",
     "modpack": {
         "modpack_title_text": "Modpacks disponíveis",
@@ -18,15 +18,41 @@ module.exports.DEFAULT_CONFIG = {
         "server_list_status_ping_text": "Ping",
         "server_list_status_players_text": "Jogadores %0"
     },
+    "authentication":{
+        "login_remember_text":"Lembrar",
+        "crack":{
+            "login_header":"Insira seu nome de jogador para jogar no mundo bobertástico. </br> Esse launcher se destina a uso exclusivo dos meus amigos. </br>E não deve ser compartilhado com terceiros.",
+            "login_title_text":"Nome do usuário",
+            "login_info_text":"entre com seu nome de usuário",
+            "login_info_text_alternative":"Seu nome de usuário deve ter pelo menos 3 caracteres",
+            "login_premium_text":"Entrar com conta mojang ou microsoft",
+        },
+        "premium":{
+            "login_header_premium":"Use sua conta Mojang para se conectar ao inicializador ou clique no botão Microsoft se você estiver usando uma conta Microsoft",
+            "login_premium_title_text":"Endereço de email",
+            "senha_premium_title_text":"Senha",
+            "login_lost_password_text":"Esqueceu sua senha?",
+            "login_noauth_text":"Entrar sem conta",
+            "email_premium_error_text":"Digite seu endereço de e-mail / nome de usuário",
+            "senha_premium_error_text":"Digite sua senha",
+            "auth_premium_error":"Endereço de email ou senha não conferem."
+        }
+    },
     "settings": {
-        "settings_account_menu_title": "Conta",
+        "settings_account_menu":{
+            "title": "Conta",
+            "noauth_button_text":"Sem autenticação",
+            "premium_button_text":"Conta mojang ou microsoft",
+        },
         "settings_ram_menu_title": "Ram",
-        "settings_resolution_menu": {
-        "title": "Resolução",
-        "description": "Mude a resolução do jogo ao iniciar o Minecraft.<br/> Defina uma resolução personalizada ou escolha de uma lista de acordo com o tamanho de sua tela. <br/> Você também pode fazer o Minecraft iniciar automaticamente em tela cheia."
+        "settings_resolution_menu": 
+        {
+            "title": "Resolução",
+            "description": "Mude a resolução do jogo ao iniciar o Minecraft.<br/> Defina uma resolução personalizada ou escolha de uma lista de acordo com o tamanho de sua tela. <br/> Você também pode fazer o Minecraft iniciar automaticamente em tela cheia."
         },
         "settings_java_menu_title": "Java",
-        "settings_launcher_menu": {
+        "settings_launcher_menu": 
+        {
         "title": "Lançador",
         "checkbox_news_refresh": "Atualizar notícias automaticamente.",
         "checkbox_server_refresh": "Atualizar o status do servidor automaticamente.",

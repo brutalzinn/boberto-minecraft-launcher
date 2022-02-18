@@ -15,7 +15,7 @@
     "icon": "app/assets/images/icons/icon.png"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
-  "url": "http://127.0.0.1/cliente",
+  "url": "http://boberto.net:5000/cliente",
   "user": "",
   "webkit": {
     "plugin": true

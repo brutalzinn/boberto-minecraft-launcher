@@ -19,7 +19,9 @@ config.config().then(res => {
     if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}`))
     {
         fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}`, { recursive: true })
-        //create default language packages
+    }
+    if(!fs.existsSync(`${dataDirectory}/${res.dataDirectory}/language`))
+    {
         fs.mkdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true })
         fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/language/en.json`, JSON.stringify(en.DEFAULT_CONFIG, true, 4), 'UTF-8')
         fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/language/pt.json`, JSON.stringify(pt.DEFAULT_CONFIG, true, 4), 'UTF-8')
@@ -61,16 +63,14 @@ config.config().then(res => {
     import ("./settings/resolution.js")
     import ("./settings/settings-launcher.js")
     document.addEventListener('change_panel', () => {
-        document.querySelector(".accountsettings").innerHTML = language_service.Tradutor('settings.settings_account_menu_title', res.dataDirectory)
+        document.querySelector(".accountsettings").innerHTML = language_service.Tradutor('settings.settings_account_menu.title', res.dataDirectory)
+        document.querySelector(".noauth").innerHTML = language_service.Tradutor('settings.settings_account_menu.noauth_button_text')
+        document.querySelector(".premium").innerHTML = language_service.Tradutor('settings.settings_account_menu.premium_button_text')
         document.querySelector(".ramsettings").innerHTML = language_service.Tradutor('settings.settings_ram_menu_title', res.dataDirectory)
         document.querySelector(".javasettings").innerHTML = language_service.Tradutor('settings.settings_java_menu_title', res.dataDirectory)
-        //resolution
         document.querySelector(".resolutionsettings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.title', res.dataDirectory)
-    // launcher settings
         document.querySelector(".launchersettings").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.title', res.dataDirectory)
-        //save button
         document.querySelector(".settingsSave").innerHTML = language_service.Tradutor('settings.settings_save_menu_title', res.dataDirectory)
-
     })
   
 
@@ -80,6 +80,9 @@ config.config().then(res => {
 
 document.querySelector(".accountsettings").addEventListener("click", () => {
     tab('accountsettingstab')
+    document.querySelector(".noauth").innerHTML = language_service.Tradutor('settings.settings_account_menu.noauth_button_text')
+    document.querySelector(".premium").innerHTML = language_service.Tradutor('settings.settings_account_menu.premium_button_text')
+
 })
 
 document.querySelector(".ramsettings").addEventListener("click", () => {
@@ -94,17 +97,17 @@ document.querySelector(".javasettings").addEventListener("click", () => {
 document.querySelector(".resolutionsettings").addEventListener("click", () => {
     //sub resolution
     tab('resolutionsettingstab')
-    document.querySelector(".text-settings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.description', launcher_dir)
+    document.querySelector(".text-settings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.description')
 })
 
 document.querySelector(".launchersettings").addEventListener("click", () => {
     //sub launcher items
 
     tab('launchersettingstab')
-    document.querySelector(".select-label-language").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_language_label', launcher_dir)
-    document.querySelector(".checkbox-refresh-news").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_news_refresh', launcher_dir)
-    document.querySelector(".checkbox-refresh-server-status").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_server_refresh', launcher_dir)
-    document.querySelector(".checkbox-launcher-open").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_launcher_settings', launcher_dir)
+    document.querySelector(".select-label-language").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_language_label')
+    document.querySelector(".checkbox-refresh-news").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_news_refresh')
+    document.querySelector(".checkbox-refresh-server-status").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_server_refresh')
+    document.querySelector(".checkbox-launcher-open").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_launcher_settings')
 
 })
 
