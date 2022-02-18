@@ -1,4 +1,6 @@
 const AutoUpdater = require("nw-autoupdater-luuxis");
+const fs = require("fs");
+
 const pkg = require("../package.json");
 if((pkg.user) === undefined || (pkg.user) === ""){
   var url = pkg.url
@@ -6,6 +8,7 @@ if((pkg.user) === undefined || (pkg.user) === ""){
   var url = pkg.url + "/" + pkg.user
 }
 const manifestUrl = url + "/launcher/package.json";
+const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 const { config, compare } = require('./assets/js/utils.js');
 const updater = new AutoUpdater(pkg, { strategy: "ScriptSwap" });
@@ -73,6 +76,9 @@ async function checkUpdate(){
   setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
+  config.config().then((res) => {
+    fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true })
+  })
   setStatus(`Reiniciar`);
   await updater.restartToSwap();
 }
