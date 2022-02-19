@@ -76,9 +76,12 @@ async function checkUpdate(){
   setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
-  config.config().then((res) => {
-    fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true })
+  setStatus(`Verificando..`);
+  await config.config().then((res) => {
+    fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true });
   })
+  setStatus(`Verificado.`);
+  sleep(1);
   setStatus(`Reiniciar`);
   await updater.restartToSwap();
 }
