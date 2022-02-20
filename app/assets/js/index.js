@@ -76,13 +76,15 @@ async function checkUpdate(){
   setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
-  setStatus(`Verificando..`);
-  await config.config().then((res) => {
-    fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true });
-  })
-  setStatus(`Verificado.`);
-  sleep(1);
+//  config.config().then((res) => {
+//     fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true });
+//   })
   setStatus(`Reiniciar`);
+  // const teste = [`rmdir "%backupDir%" /s /q`,
+  // `robocopy "%execDir%" "%backupDir%" /mir`,
+  // `robocopy "%updateDir%" "%execDir%" /mir`,
+  // `%execDir%\\${pkg.productName}`]
+  
   await updater.restartToSwap();
 }
   

@@ -10,26 +10,26 @@ config.modpacks().then( async modpack => {
     {
     for (let i = 0; i < modpack.length; i++) 
     {
-        let StatusServer = (await status.StatusServer(modpack[i].server_ip, parseInt( modpack[i].server_port)))
+        let StatusServer = await status.StatusServer(modpack[i].server_ip, parseInt( modpack[i].server_port))
         let modpackName = modpack[i].name
-
         if(!StatusServer){
-            document.querySelector(".player-connect").innerHTML += `<li>${language_service.Tradutor('server_list.status_server_offline_title')}</li>`;
+            document.querySelector(".player-connect").innerHTML += language_service.TradutorVars('server_list.status_server_offline_title', [modpackName]);
         }
         else
         {
             if(StatusServer.players.online === 0){
                 // document.querySelector(".player-connect").innerHTML = `Nenhum jogador conectado`;
-                document.querySelector(".player-connect").innerHTML += language_service.Tradutor('server_list.status_server_empty_title');
-            } else if (status_json.raw.players.online === 1){
-                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_one_player_connected_title",[StatusServer.players.online]);
+                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_empty_title", [modpackName]);
+            } else if (StatusServer.players.online === 1){
+                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_one_player_connected_title",[StatusServer.players.online, modpackName]);
                 head(StatusServer.players)      
             } else {
-                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_multiple_player_connected_title",[StatusServer.players.online]);
+                document.querySelector(".player-connect").innerHTML += language_service.TradutorVars("server_list.status_server_multiple_player_connected_title",[StatusServer.players.online, modpackName]);
                 head(StatusServer.players)      
 
             }
         }
+
          
     }
     }

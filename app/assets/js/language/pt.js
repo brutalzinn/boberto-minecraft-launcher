@@ -14,10 +14,10 @@ module.exports.DEFAULT_CONFIG = {
     },
     "server_list": {
         "status_title_text":"Status dos servidores",
-        "status_server_empty_title":"Nenhum jogador conectado",
-        "status_server_offline_title":"Servidor Indisponível",
-        "status_server_one_player_connected_title":"0 jogador conectado atualmente",
-        "status_server_multiple_player_connected_title":"0 jogadores conectados atualmente",
+        "status_server_empty_title":"<br>0 - Nenhum jogador conectado",
+        "status_server_offline_title":"<br>0 - Servidor Indisponível",
+        "status_server_one_player_connected_title":"<br>0 - jogador conectado atualmente em 1",
+        "status_server_multiple_player_connected_title":"<br>0 - jogadores conectados atualmente em 1",
         "status_name_text": "Servidor",
         "status_ping_text": "Ping",
         "status_players_text": "0 1"

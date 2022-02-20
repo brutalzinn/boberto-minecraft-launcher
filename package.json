@@ -1,18 +1,21 @@
 {
-  "name": "boberto-minecraft-launcher",
-  "version": "2.0.4",
+  "name": "boberto-launcher",
+  "version": "2.0.5",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
   "author": "Developed by Luuxis and adapted by robertocpaes.dev",
   "window": {
-    "title": "Boberto Minecraft Launcher",
+    "title": "Boberto update",
     "width": 400,
     "height": 500,
     "frame": false,
     "resizable": true,
     "position": "center",
     "icon": "app/assets/images/icons/icon.png"
+  },
+  "engines": {
+    "node": "16.x.x"
   },
   "chromium-args": "--enable-logging --v=1 --disable-gpu --mixed-content",
   "url": "http://boberto.net:5000/cliente",
@@ -32,17 +35,21 @@
   "license": "CC0",
   "build": {
     "appId": "Boberto Minecraft Launcher",
-    "nwVersion": "0.55.0",
+    "nwVersion": "0.60.0",
     "packed": true,
     "targets": [
       "zip",
       "nsis7z"
     ],
     "strippedProperties": [
-      "build"
+      "build",
+      "scripts",
+      "engines",
+      "devDependencies"
     ],
     "excludes": [
       ".gitignore",
+      "nodemon.json",
       "tool.bat",
       "web/**",
       "AppData/**",
@@ -76,6 +83,6 @@
   },
   "dependencies": {
     "minecraft-java-core": "github:brutalzinn/minecraft-java-core",
-    "nw-autoupdater-luuxis": "^1.1.6"
+    "nw-autoupdater-luuxis": "github:brutalzinn/nw-autoupdater-luuxis"
   }
 }

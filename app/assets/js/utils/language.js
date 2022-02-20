@@ -2,7 +2,7 @@
 const config = require('./config')
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-
+ 
 
 const Tradutor = (chave) => {
     let languages = `${dataDirectory}/${config.launcher_dir}/language`
