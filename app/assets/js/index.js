@@ -11,7 +11,7 @@ const manifestUrl = url + "/launcher/package.json";
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 const { config, compare } = require('./assets/js/utils.js');
-const updater = new AutoUpdater(pkg, { strategy: "ScriptSwap" });
+const updater = new AutoUpdater(pkg, { strategy: "ScriptSwap", executable:pkg.productName });
 
 const win = nw.Window.get();
 const Dev = (window.navigator.plugins.namedItem('Native Client') !== null);
@@ -76,15 +76,11 @@ async function checkUpdate(){
   setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
+  //need check how to works with multi language system after update..
 //  config.config().then((res) => {
 //     fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true });
 //   })
   setStatus(`Reiniciar`);
-  // const teste = [`rmdir "%backupDir%" /s /q`,
-  // `robocopy "%execDir%" "%backupDir%" /mir`,
-  // `robocopy "%updateDir%" "%execDir%" /mir`,
-  // `%execDir%\\${pkg.productName}`]
-  
   await updater.restartToSwap();
 }
   

@@ -1,6 +1,6 @@
 {
   "name": "boberto-launcher",
-  "version": "2.0.5",
+  "version": "2.0.4",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
