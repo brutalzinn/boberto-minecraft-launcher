@@ -84,6 +84,6 @@
 	 border-radius: 10px;
 }
  progress::-webkit-progress-value {
-	 background-color: rgb(255, 0, 0);
+	 background-color: #58993c;
 	 border-radius: 10px;
 }
