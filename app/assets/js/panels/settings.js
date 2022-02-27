@@ -42,7 +42,8 @@ config.config().then(res => {
                 "Java": {
                     "RamMin": RamMin,
                     "RamMax": `${(totalMem / 3).toFixed(0)}`,
-                    "Directory": null
+                    "Directory": null,
+                    "Args":"-Dsun.rmi.dgc.server.gcInterval=600000 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32"
                 },
                 "Resolution": {
                     "width": "1280",	
@@ -62,15 +63,16 @@ config.config().then(res => {
     import ("./settings/java-directory.js")
     import ("./settings/resolution.js")
     import ("./settings/settings-launcher.js")
+    import ("./settings/java-args.js")
     document.addEventListener('change_panel', () => {
-        document.querySelector(".accountsettings").innerHTML = language_service.Tradutor('settings.settings_account_menu.title', res.dataDirectory)
+        document.querySelector(".accountsettings").innerHTML = language_service.Tradutor('settings.settings_account_menu.title')
         document.querySelector(".noauth").innerHTML = language_service.Tradutor('settings.settings_account_menu.noauth_button_text')
         document.querySelector(".premium").innerHTML = language_service.Tradutor('settings.settings_account_menu.premium_button_text')
-        document.querySelector(".ramsettings").innerHTML = language_service.Tradutor('settings.settings_ram_menu_title', res.dataDirectory)
-        document.querySelector(".javasettings").innerHTML = language_service.Tradutor('settings.settings_java_menu_title', res.dataDirectory)
-        document.querySelector(".resolutionsettings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.title', res.dataDirectory)
-        document.querySelector(".launchersettings").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.title', res.dataDirectory)
-        document.querySelector(".settingsSave").innerHTML = language_service.Tradutor('settings.settings_save_menu_title', res.dataDirectory)
+        document.querySelector(".ramsettings").innerHTML = language_service.Tradutor('settings.settings_ram_menu_title')
+        document.querySelector(".javasettings").innerHTML = language_service.Tradutor('settings.settings_java_menu_title')
+        document.querySelector(".resolutionsettings").innerHTML = language_service.Tradutor('settings.settings_resolution_menu.title')
+        document.querySelector(".launchersettings").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.title')
+        document.querySelector(".settingsSave").innerHTML = language_service.Tradutor('settings.settings_save_menu_title')
     })
   
 
