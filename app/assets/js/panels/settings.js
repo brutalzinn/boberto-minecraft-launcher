@@ -43,7 +43,7 @@ config.config().then(res => {
                     "RamMin": RamMin,
                     "RamMax": `${(totalMem / 3).toFixed(0)}`,
                     "Directory": null,
-                    "Args":"-Dsun.rmi.dgc.server.gcInterval=600000 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32"
+                    "Args":""
                 },
                 "Resolution": {
                     "width": "1280",	
