@@ -1,11 +1,11 @@
-const { config } = require('./assets/js/utils.js');
+const { config, language_service } = require('./assets/js/utils.js');
 let newsForm = document.querySelector(".container-news")
 
 
 let news_var = config.news().then(config => {
   newsForm.innerHTML = ``
   if(config.news.length === 0){
-    newsForm.innerHTML = `<div class="newsTitle">Nenhuma notícia está disponível no momento.</div>`
+    newsForm.innerHTML = `<div class="newsTitle">${language_service.Tradutor('news.news_empty')}</div>`
   } else {
     for (let i = 0; i < config.news.length; i++) {
       var newsTitle = config.news[i].title

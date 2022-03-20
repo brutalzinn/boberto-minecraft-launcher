@@ -10,18 +10,19 @@ module.exports.DEFAULT_CONFIG = {
     "news": {
       "news_title_text": "News",
       "news_next_button_text": "Next",
-      "news_back_button_text": "Previous"
+      "news_back_button_text": "Previous",
+      "news_empty": "No news available."
     },
     "server_list": {
-      "status_title_text":"Server status",
-      "status_server_empty_title":"No players connected to the server at 0",
-      "status_server_offline_title":"Unavailable server",
-      "status_server_one_player_connected_title":"0 currently connected player in 1",
-      "status_server_multiple_player_connected_title":"0 currently connected players in 1",
-      "status_name_text": "Servidor",
+      "status_title_text": "Server Status",
+      "status_server_empty_title": "<br>0 - No Players Connected",
+      "status_server_offline_title": "<br>0 - Server Unavailable",
+      "status_server_one_player_connected_title": "<br>0 - Player Currently Connected to 1",
+      "status_server_multiple_player_connected_title": "<br>0 - Players Currently Connected to 1",
+      "status_name_text": "Server ",
       "status_ping_text": "Ping",
       "status_players_text": "0 1"
-  },
+    },
     "authentication":{
       "login_remember_text": "Remember",
       "crack": {

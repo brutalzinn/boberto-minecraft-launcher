@@ -1,12 +1,12 @@
 {
   "name": "boberto-launcher",
-  "version": "2.0.4",
+  "version": "2.0.7",
   "productName": "Boberto Minecraft Launcher",
   "description": "Boberto Minecraft Launcher",
   "main": "app/index.html",
   "author": "Developed by Luuxis and adapted by robertocpaes.dev",
   "window": {
-    "title": "Boberto update",
+    "title": "Boberto Minecraft Launcher",
     "width": 400,
     "height": 500,
     "frame": false,

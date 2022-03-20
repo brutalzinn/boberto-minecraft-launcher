@@ -68,7 +68,12 @@ let modpack_var = config.modpacks().then( modpack => {
       }
 
     }
-    modPackSelector.value = config.modpack_selected.id
+    console.log(config.config_cache)
+    if(config.config_cache.Launcher.FavoriteModPack != null){
+      modPackSelector.value = config.config_cache.Launcher.FavoriteModPack
+    }else{
+      modPackSelector.value = config.modpack_selected.id
+    }
    // console.log(config.modpack_selected)
     modPackInfo()
 

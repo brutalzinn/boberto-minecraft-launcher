@@ -36,7 +36,8 @@ config.config().then(res => {
                 "NewsAutoRefresh": false,
                 "StatusServerAutoRefresh": false,
                 "CloseLauncher": true,
-                "Language":"en"
+                "Language":"en",
+                "FavoriteModPack":null
             },
             "Settings": {
                 "Java": {

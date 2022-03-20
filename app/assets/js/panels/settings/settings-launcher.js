@@ -15,17 +15,14 @@ let languageSelector = document.querySelector(".select-language")
 document.querySelector(".select-language").addEventListener('change', async function() {
 file.Launcher.Language = this.value
 fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
-
-
-
 });
 
 
 
 
-const languages = `${dataDirectory}/${res.dataDirectory}/language`
+    const languages = `${dataDirectory}/${res.dataDirectory}/language`
 
-var files = glob.sync(`${languages}/*.json`);
+    var files = glob.sync(`${languages}/*.json`);
 
     files = files.map((item)=> path.basename(item))
 
@@ -68,7 +65,36 @@ var files = glob.sync(`${languages}/*.json`);
     } else if (file.Launcher.CloseLauncher === true) {
         document.querySelector(".CloseLauncherSettings").checked = false
     }
+
+    config.modpacks().then( async modpack => {
+        let modPackSelector = document.querySelector(".select-modpackfavorite")
+        if(modpack.length === 0)
+        {
+            modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
+            return
+        }
+    
+        var file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+    
+        modPackSelector.innerHTML += `<option value="">Sem favorito</option>`
+        for (let i = 0; i < modpack.length; i++) 
+        {
+            modPackSelector.innerHTML += `<option value="${modpack[i].id}">${modpack[i].name}</option>`
+        }
+        if(file.Launcher.FavoriteModPack !== null){
+            modPackSelector.value = file.Launcher.FavoriteModPack
+        }
+        modPackSelector.addEventListener('change', function() {
+       
+            file.Launcher.FavoriteModPack = this.value === "" ? null : this.value 
+            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+        })
+  
+        
+    
+    })
 })
+
 
 
 

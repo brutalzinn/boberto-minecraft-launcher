@@ -10,7 +10,8 @@ module.exports.DEFAULT_CONFIG = {
     "news": {
         "news_title_text": "Notícias",
         "news_next_button_text": "Próximo",
-        "news_back_button_text": "Anterior"
+        "news_back_button_text": "Anterior",
+        "news_empty": "Nenhuma notícia disponível."
     },
     "server_list": {
         "status_title_text":"Status dos servidores",

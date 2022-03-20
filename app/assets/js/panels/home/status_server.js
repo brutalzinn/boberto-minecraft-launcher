@@ -14,7 +14,10 @@ config.modpacks().then( async modpack => {
         let modpackName = modpack[i].name
         if(!StatusServer){
             document.querySelector(".player-connect").innerHTML += language_service.TradutorVars('server_list.status_server_offline_title', [modpackName]);
+            console.log("TESTEEEE",language_service.TradutorVars('server_list.status_server_offline_title', [modpackName]))
+
         }
+        
         else
         {
             if(StatusServer.players.online === 0){
