@@ -57,6 +57,7 @@ module.exports.DEFAULT_CONFIG = {
     "settings_java_menu_title": "Java",
     "settings_launcher_menu": {
     "title": "Launcher",
+    "label_favorite_modpack_label": "Modpack préféré:",
     "checkbox_news_refresh": "Mettez automatiquement à jour les nouvelles.",
     "checkbox_server_refresh": "Mettez à  jour le statut du serveur automatiquement.",
     "checkbox_launcher_settings": "Gardez le lanceur ouvert après le démarrage du jeu.",

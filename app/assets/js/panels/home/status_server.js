@@ -11,6 +11,7 @@ config.modpacks().then( async modpack => {
     for (let i = 0; i < modpack.length; i++) 
     {
         let StatusServer = await status.StatusServer(modpack[i].server_ip, parseInt( modpack[i].server_port))
+        console.log(StatusServer)
         let modpackName = modpack[i].name
         if(!StatusServer){
             document.querySelector(".player-connect").innerHTML += language_service.TradutorVars('server_list.status_server_offline_title', [modpackName]);

@@ -59,6 +59,7 @@ module.exports.DEFAULT_CONFIG = {
       "settings_launcher_menu": 
       {
         "title":"Launcher",
+        "label_favorite_modpack_label": "Favorite modpack:",
         "checkbox_news_refresh":"Update news automatically.",
         "checkbox_server_refresh":"Update server status automatically.",
         "checkbox_launcher_settings":"Keep the launcher open after starting the game.",

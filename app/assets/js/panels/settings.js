@@ -107,6 +107,7 @@ document.querySelector(".launchersettings").addEventListener("click", () => {
     //sub launcher items
 
     tab('launchersettingstab')
+    document.querySelector(".select-label-modpackfavorite").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_favorite_modpack_label')
     document.querySelector(".select-label-language").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.label_language_label')
     document.querySelector(".checkbox-refresh-news").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_news_refresh')
     document.querySelector(".checkbox-refresh-server-status").innerHTML = language_service.Tradutor('settings.settings_launcher_menu.checkbox_server_refresh')
