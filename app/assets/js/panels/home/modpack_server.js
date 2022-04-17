@@ -43,7 +43,7 @@ function modPackInfo(){
   }
 });
 
-let modpack_var = config.modpacks().then( modpack => {
+ let modpack_var = config.modpacks().then( modpack => {
 
  const configFile =  config.ReadConfig()
 
@@ -80,10 +80,10 @@ let modpack_var = config.modpacks().then( modpack => {
     modPackInfo()
 
   }
- NewsAutoRefresh()
+ ModPackAutoRefresh()
 })
 
-function NewsAutoRefresh(){
+function ModPackAutoRefresh(){
     const config_var = require(`${dataDirectory}/${config.launcher_dir}/config.json`)
     if(config_var.Launcher.NewsAutoRefresh === true){
       setInterval(function(){

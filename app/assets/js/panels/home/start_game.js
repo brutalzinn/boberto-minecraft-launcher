@@ -1,10 +1,11 @@
-const {launch} = require('minecraft-java-core');
+const { launch } = require('minecraft-java-core');
 const launcher = new launch();
 const fs = require('fs');
 const pkg = require('../package.json');
 const win = nw.Window.get();
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
-const { auth, config, checkmodsfolder,language_service } = require('./assets/js/utils.js');
+const { auth, config, checkmodsfolder, language_service } = require('./assets/js/utils.js');
+
 win.on('loaded', () => { loadTranslation() });
 document.addEventListener('change_panel', () => loadTranslation())
 
@@ -18,7 +19,6 @@ function loadTranslation(){
     document.querySelector(".news-before").innerHTML = language_service.Tradutor('news.news_back_button_text')
     document.querySelector(".modpack_label").innerHTML = language_service.Tradutor('modpack.modpack_title_text')
     console.log('loaded translator home')
-
 }
 
 document.querySelector(".play-btn").addEventListener("click", async () => {

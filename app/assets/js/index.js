@@ -7,7 +7,7 @@ if((pkg.user) === undefined || (pkg.user) === ""){
 } else {
   var url = pkg.url + "/" + pkg.user
 }
-const manifestUrl = url + "/launcher/package.json";
+const manifestUrl = url + "/cliente/launcher/package.json";
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 const { config, compare } = require('./assets/js/utils.js');

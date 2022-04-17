@@ -1,7 +1,7 @@
 const { config, language_service } = require('./assets/js/utils.js');
 const { status } = require('minecraft-java-core');
 
-config.modpacks().then( async modpack => {
+let RefreshStatusServer = config.modpacks().then( async modpack => {
     if(modpack.length === 0)
     {
         document.querySelector(".player-connect").innerHTML = `Nenhum modpack disponível`
@@ -32,7 +32,9 @@ config.modpacks().then( async modpack => {
                 head(StatusServer.players)      
 
             }
-        }  
+        }
+
+         
     }
     }
     StatusServerAutoRefresh()
@@ -48,12 +50,11 @@ function head(StatusServer) {
     }
 }
 
-
 function StatusServerAutoRefresh() {
     const config_var = require(`${dataDirectory}/${config.launcher_dir}/config.json`)
     if(config_var.Launcher.StatusServerAutoRefresh === true){
         setInterval(function(){
-        status_var
+            RefreshStatusServer
         }, 600000)
     }
    
