@@ -76,10 +76,6 @@ async function checkUpdate(){
   setStatus(`Descompactando atualização..`);
   await updater.unpack(file);
   toggleProgress();
-  //need check how to works with multi language system after update..
-//  config.config().then((res) => {
-//     fs.rmdirSync(`${dataDirectory}/${res.dataDirectory}/language`, { recursive: true, force: true });
-//   })
   setStatus(`Reiniciar`);
   await updater.restartToSwap();
 }

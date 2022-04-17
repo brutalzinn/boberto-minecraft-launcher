@@ -1,4 +1,5 @@
 const { config } = require('./assets/js/utils.js');
+
 const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 const glob = require('glob')
 const path = require('path');
@@ -8,19 +9,19 @@ const path = require('path');
 
 config.config().then(res => {
 
-const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+const file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
 
 let languageSelector = document.querySelector(".select-language")
 
 document.querySelector(".select-language").addEventListener('change', async function() {
 file.Launcher.Language = this.value
-fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
 });
 
 
 
 
-    const languages = `${dataDirectory}/${res.dataDirectory}/language`
+    const languages = `${dataDirectory}/${config.launcher_dir}/language`
 
     var files = glob.sync(`${languages}/*.json`);
 
@@ -38,14 +39,9 @@ fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.strin
             languageSelector.innerHTML += `<option value="${files[i].split('.')[0]}">${lang.name}</option>`
         }
     }
-        languageSelector.value = file.Launcher.Language
-  
-
-
-
-
-
     
+    languageSelector.value = file.Launcher.Language
+
     if (file.Launcher.NewsAutoRefresh === true) {
         document.querySelector(".NewsAutoRefreshSettings").checked = true
     } else if (file.Launcher.NewsAutoRefresh === false) {
@@ -74,7 +70,7 @@ fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.strin
             return
         }
     
-        var file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+        var file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
     
         modPackSelector.innerHTML += `<option value="">Sem favorito</option>`
         for (let i = 0; i < modpack.length; i++) 
@@ -87,7 +83,7 @@ fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.strin
         modPackSelector.addEventListener('change', function() {
        
             file.Launcher.FavoriteModPack = this.value === "" ? null : this.value 
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         })
   
         
@@ -100,39 +96,39 @@ fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.strin
 
 document.querySelector(".NewsAutoRefreshSettings").addEventListener("click", () => {
     config.config().then(res => {
-        var file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+        var file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
         if(document.querySelector(".NewsAutoRefreshSettings").checked == true){
             file.Launcher.NewsAutoRefresh = true
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         } else if(document.querySelector(".NewsAutoRefreshSettings").checked ==  false){
             file.Launcher.NewsAutoRefresh = false
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         }
     })
 })
 
 document.querySelector(".StatusServerAutoRefreshSettings").addEventListener("click", () => {
     config.config().then(res => {
-        var file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+        var file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
         if(document.querySelector(".StatusServerAutoRefreshSettings").checked == true){
             file.Launcher.StatusServerAutoRefresh = true
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         } else if(document.querySelector(".StatusServerAutoRefreshSettings").checked ==  false){
             file.Launcher.StatusServerAutoRefresh = false
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         }
     })
 })
 
 document.querySelector(".CloseLauncherSettings").addEventListener("click", () => {
     config.config().then(res => {
-        var file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+        var file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
         if(document.querySelector(".CloseLauncherSettings").checked == true){
             file.Launcher.CloseLauncher = false
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         } else if(document.querySelector(".CloseLauncherSettings").checked ==  false){
             file.Launcher.CloseLauncher = true
-            fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+            fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
         }
     })
 })

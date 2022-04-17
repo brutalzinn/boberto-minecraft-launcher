@@ -5,7 +5,6 @@ import ("./home/modpack_server.js")
 
 
 document.querySelector(".settings-btn").addEventListener("click", () => {
-    
     changePanel("home", "settings")
 })
 

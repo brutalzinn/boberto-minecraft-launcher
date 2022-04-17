@@ -8,7 +8,8 @@ const Tradutor = (chave) => {
     let languages = `${dataDirectory}/${config.launcher_dir}/language`
     let file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
     let lang = require(`${languages}/${file.Launcher.Language}.json`)
-     return  chave.split('.').reduce((o,i)=>o[i], lang);
+    
+    return  chave.split('.').reduce((o,i)=>o[i], lang);
 }
 
 const TradutorVars = (input, variables) => {

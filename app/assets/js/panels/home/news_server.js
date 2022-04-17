@@ -37,14 +37,12 @@ let news_var = config.news().then(config => {
 })
 
 function NewsAutoRefresh(){
-  config.config().then(config => {
-    const config_var = require(`${dataDirectory}/${config.dataDirectory}/config.json`)
+    const config_var = require(`${dataDirectory}/${config.launcher_dir}/config.json`)
     if(config_var.Launcher.NewsAutoRefresh === true){
       setInterval(function(){
         news_var
       }, 600000)
     }
-  })
 }
 
 

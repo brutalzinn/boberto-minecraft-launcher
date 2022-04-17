@@ -14,11 +14,11 @@ document.querySelector(".microsoft-btn").addEventListener("click", () => {
     config.config().then(res => {
         auth.loginMicrosoft(res.client_id).then(user => {
             if(document.querySelector(".loginRemember").checked == true){
-                const file = require(`${dataDirectory}/${res.dataDirectory}/config.json`);
+                const file = require(`${dataDirectory}/${config.launcher_dir}/config.json`);
                 file.select = `${user.uuid}`
                 file.Login[user.uuid] = user
                 file.Mode = 1
-                fs.writeFileSync(`${dataDirectory}/${res.dataDirectory}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
+                fs.writeFileSync(`${dataDirectory}/${config.launcher_dir}/config.json`, JSON.stringify(file, true, 4), 'UTF-8')
             }
             document.querySelector(".user-head").src = `https://mc-heads.net/avatar/${user.profile.name}/100`
             changePanel("login", "home")

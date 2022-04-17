@@ -1,9 +1,10 @@
 const { config, language_service } = require('./assets/js/utils.js');
 const { status } = require('minecraft-java-core');
+const dataDirectory = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
 let modPackSelector = document.querySelector(".select-modpacks")
 
- function modPackInfo(){
+function modPackInfo(){
   let modpackInfoHtml = document.querySelector(".modpack-info")
   let modpack_selected = config.modpack_selected
 
@@ -42,11 +43,12 @@ let modPackSelector = document.querySelector(".select-modpacks")
   }
 });
 
- 
-
 let modpack_var = config.modpacks().then( modpack => {
- let nonpremiumuser =  config.config_cache.Mode == 0
- let premiumuser =  config.config_cache.Mode == 1
+
+ const configFile =  config.ReadConfig()
+
+ let nonpremiumuser =  configFile.Mode == 0
+ let premiumuser =  configFile.Mode == 1
 
   if(modpack.length === 0){
     modPackSelector.innerHTML += `<option value="-1">Nenhum modpack disponível</option>`
@@ -68,9 +70,9 @@ let modpack_var = config.modpacks().then( modpack => {
       }
 
     }
-    console.log(config.config_cache)
-    if(config.config_cache.Launcher.FavoriteModPack != null){
-      modPackSelector.value = config.config_cache.Launcher.FavoriteModPack
+    
+    if(configFile.Launcher.FavoriteModPack != null){
+      modPackSelector.value = configFile.Launcher.FavoriteModPack
     }else{
       modPackSelector.value = config.modpack_selected.id
     }
@@ -82,12 +84,10 @@ let modpack_var = config.modpacks().then( modpack => {
 })
 
 function NewsAutoRefresh(){
-  config.config().then(config => {
-    const config_var = require(`${dataDirectory}/${config.dataDirectory}/config.json`)
+    const config_var = require(`${dataDirectory}/${config.launcher_dir}/config.json`)
     if(config_var.Launcher.NewsAutoRefresh === true){
       setInterval(function(){
         modpack_var
       }, 600000)
     }
-  })
 }

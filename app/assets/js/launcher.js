@@ -65,12 +65,9 @@ function changePanel(V1, V2){
 
 
 config.config().then(async (res) => {
-  let path = `${dataDirectory}/${res.dataDirectory}/config.json`
-  config.launcher_dir = res.dataDirectory
-
+  let path = `${dataDirectory}/${config.launcher_dir}/config.json`
   if(fs.existsSync(path)) {
     let file = require(path)
-    config.config_cache = file
     let getuser = auth.getUser(file.Login)
     
     if(getuser === null){

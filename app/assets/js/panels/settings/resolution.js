@@ -1,10 +1,10 @@
-config.config().then(config => {
-    const config_launcher = require(dataDirectory + "/" + config.dataDirectory + "/config.json")
-    
-    if(config_launcher.Settings.Resolution.width === null || config_launcher.Settings.Resolution.height === null){
+const { config } = require('./assets/js/utils.js');
 
-    } else {
-        document.querySelector(".width").value = config_launcher.Settings.Resolution.width
-        document.querySelector(".height").value = config_launcher.Settings.Resolution.height
-    }
-})
+let fileConfig = config.ReadConfig()
+//wrong way to do this. Its only to put a !== null here. But not today.
+if(fileConfig.Settings.Resolution.width === null || fileConfig.Settings.Resolution.height === null){
+
+} else {
+document.querySelector(".width").value = fileConfig.Settings.Resolution.width
+document.querySelector(".height").value = fileConfig.Settings.Resolution.height
+}

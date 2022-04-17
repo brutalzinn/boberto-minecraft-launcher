@@ -27,7 +27,7 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
     document.querySelector(".info-download").style.display = "block"
     
     config.config().then(config => {
-    let modpack_dir = `${dataDirectory}/${config.dataDirectory}/${modpack.directory}`
+    let modpack_dir = `${dataDirectory}/${pkg.directory}/${modpack.directory}`
     if (document.getElementById('force-play').checked) {
         document.querySelector(".info-download").innerHTML = `Forçando atualização..`
         try {
@@ -40,10 +40,10 @@ document.querySelector(".play-btn").addEventListener("click", async () => {
         document.querySelector(".info-download").style.display = "block"
         }
 
-        const config_launcher = require(dataDirectory + "/" + config.dataDirectory + "/config.json")
+        const config_launcher = require(dataDirectory + "/" + pkg.directory + "/config.json")
 
         if(config.game_url === "" || config.game_url === undefined || config.game_url === null) {
-            var url = `${pkg.url}/files?modpack=${modpack.id}`
+            var url = `${pkg.url}/modpackcreator/cliente/modpack/${modpack.id}`
         } else {
             var url = config.game_url
         }
